@@ -1581,6 +1581,9 @@
          ========================================== -->
     <section id="scene-0" class="scene" style="background: #f5f2eb;">
         <canvas id="flowerIntroCanvas" class="w-full h-full block"></canvas>
+        <button id="flowerBloomNextBtn" onclick="goToScene(1)" class="fixed bottom-6 right-6 z-30 btn-gold px-6 py-2.5 rounded-full text-stone-950 font-bold text-xs shadow-xl cursor-pointer flex items-center gap-2 opacity-0 pointer-events-none transition-all duration-500">
+            <span>Next: Open Gift 🎁</span> <span>➡️</span>
+        </button>
     </section>
 
     <!-- ==========================================
@@ -1681,6 +1684,9 @@
             <p class="font-serif-display italic text-xl sm:text-2xl text-rose-950/70">a little something, for you</p>
         </div>
         <canvas id="bowCanvas" class="w-full h-full block cursor-grab active:cursor-grabbing" style="touch-action: none;"></canvas>
+        <button id="bowNextBtn" onclick="goToScene(3)" class="fixed bottom-6 right-6 z-30 btn-gold px-6 py-2.5 rounded-full text-stone-950 font-bold text-xs shadow-xl cursor-pointer flex items-center gap-2 opacity-0 pointer-events-none transition-all duration-500">
+            <span>Next: Birthday Wishes 🎂</span> <span>➡️</span>
+        </button>
         <div class="absolute bottom-11 sm:bottom-14 text-center pointer-events-none z-20">
             <p id="bowInstruction" class="text-[11px] sm:text-xs tracking-[0.28em] uppercase text-rose-950/50 font-medium">TAP OR PULL &amp; RELEASE</p>
         </div>
@@ -1701,6 +1707,9 @@
             <path class="gold-arc-path" d="M 15 19 Q 130 3 245 16" stroke="#f59e0b" stroke-width="3" stroke-linecap="round"/>
         </svg>
         <p class="font-serif-display italic text-lg sm:text-2xl text-amber-100/85 mt-1">to someone worth celebrating</p>
+        <button onclick="goToScene(4)" class="btn-gold mt-6 px-8 py-3 rounded-full text-stone-950 font-bold text-xs sm:text-sm shadow-2xl flex items-center gap-2 cursor-pointer animate-pulse hover:scale-105 transition-transform">
+            <span>Next: Our Love Tree 🌳</span> <span>➡️</span>
+        </button>
     </section>
 
     <!-- ==========================================
@@ -1729,6 +1738,9 @@
         <p id="treeContinueHint" class="fixed bottom-4 sm:bottom-6 text-[11px] tracking-[0.18em] text-stone-500 sm:text-stone-400 opacity-0 transition-opacity duration-700 pointer-events-none">
             tap anywhere to continue
         </p>
+        <button id="treeNextBtn" onclick="goToScene(4.5)" class="fixed bottom-5 right-5 z-30 btn-gold px-5 py-2.5 rounded-full text-stone-950 font-bold text-xs shadow-xl cursor-pointer flex items-center gap-2 opacity-0 pointer-events-none transition-all duration-500">
+            <span>Next: Kawaii Surprise 💌</span> <span>➡️</span>
+        </button>
     </section>
 
     <!-- ==========================================
@@ -2087,6 +2099,9 @@
                 </button>
             </div>
             <p id="cakeContinueHint" class="text-[11px] tracking-wider text-amber-100/55 mt-1.5 opacity-0 transition-opacity duration-700">tap anywhere to continue ✨</p>
+            <button id="cakeNextBtn" onclick="goToScene(6)" class="btn-gold mt-2.5 px-6 py-2.5 rounded-full text-stone-950 text-xs font-bold hidden items-center gap-2 shadow-xl cursor-pointer">
+                <span>Next: Pop 5 Balloons 🎈</span> <span>➡️</span>
+            </button>
         </div>
     </section>
 
@@ -3646,10 +3661,7 @@
                         ctx.restore();
                     }
 
-                    if (heartElapsed > 10.6 && !curtainsTriggered) {
-                        curtainsTriggered = true;
-                        goToSceneInternal(11);
-                    }
+                    // Auto jump removed: user can admire the heart and clicks Next button when ready
                 }
 
                 lovePyAnimId = requestAnimationFrame(renderLovePyLoop);
@@ -4042,11 +4054,7 @@
 
             realFwAnimId = requestAnimationFrame(renderRealFireworksLoop);
 
-            realFwCurtainTimer = setTimeout(() => {
-                if (currentScene === 11) {
-                    triggerClosingCurtainsInternal();
-                }
-            }, 11000);
+            // Curtain auto-timer removed: fireworks continue until user clicks Close Curtains button
         }
 
         const APP_CONFIG = {
@@ -4858,7 +4866,7 @@
             if (index === -1.5) initLily3DScene();
             if (index === 0) runFlowerBloomScene();
             if (index === 2) initBowAndArrowScene();
-            if (index === 3) setTimeout(() => { if (currentScene === 3) goToSceneInternal(4); }, 2500);
+            if (index === 3) { /* User clicks next manually */ }
             if (index === 4) initHeartTreeScene();
             if (index === 4.5) initKawaiiCardScene();
             if (index === 5) initCakeBakingScene();
@@ -4957,9 +4965,7 @@
         function initLily3DScene() {
             lilyProgress = 0;
             if (lilyAutoAdvanceTimer) clearTimeout(lilyAutoAdvanceTimer);
-            lilyAutoAdvanceTimer = setTimeout(() => {
-                if (currentScene === -1.5) goToSceneInternal(0);
-            }, 10500);
+            // lily auto advance removed: user clicks button to proceed
 
             if (lilyInitialized) {
                 if (lilySceneObj && lilySceneObj.startLoop) lilySceneObj.startLoop();
@@ -5274,6 +5280,11 @@
         }
 
         function runFlowerBloomScene() {
+            const fBtn = document.getElementById('flowerBloomNextBtn');
+            if (fBtn) {
+                fBtn.classList.add('opacity-0', 'pointer-events-none');
+                fBtn.classList.remove('animate-bounce');
+            }
             const canvas = document.getElementById('flowerIntroCanvas');
             const ctx = canvas.getContext('2d');
             canvas.width = window.innerWidth;
@@ -5359,14 +5370,26 @@
                     }
                 });
 
-                if (frame < 170) requestAnimationFrame(animateFlowers);
-                else goToSceneInternal(1);
+                if (frame < 170) {
+                    requestAnimationFrame(animateFlowers);
+                } else {
+                    const btn = document.getElementById('flowerBloomNextBtn');
+                    if (btn) {
+                        btn.classList.remove('opacity-0', 'pointer-events-none');
+                        btn.classList.add('animate-bounce');
+                    }
+                }
             }
             animateFlowers();
         }
 
         function initBowAndArrowScene() {
             if (bowAnimId) cancelAnimationFrame(bowAnimId);
+            const bBtn = document.getElementById('bowNextBtn');
+            if (bBtn) {
+                bBtn.classList.add('opacity-0', 'pointer-events-none');
+                bBtn.classList.remove('animate-bounce');
+            }
             const canvas = document.getElementById('bowCanvas');
             const ctx = canvas.getContext('2d');
             canvas.width = window.innerWidth;
@@ -5548,7 +5571,13 @@
                             const a = Math.random() * Math.PI * 2, sp = Math.random() * 5 + 1.5;
                             burstParticles.push({ x: heartPos.x, y: heartPos.y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp - 1, size: Math.random() * 6 + 3.5, color: i % 3 === 0 ? '#fbbf24' : '#fb7185', alpha: 1 });
                         }
-                        setTimeout(() => { if (currentScene === 2) goToSceneInternal(3); }, 750);
+                        setTimeout(() => {
+                            const btn = document.getElementById('bowNextBtn');
+                            if (btn) {
+                                btn.classList.remove('opacity-0', 'pointer-events-none');
+                                btn.classList.add('animate-bounce');
+                            }
+                        }, 500);
                     }
                 }
                 burstParticles.forEach(bp => {
@@ -5566,6 +5595,11 @@
         function initHeartTreeScene() {
             if (treeAnimId) cancelAnimationFrame(treeAnimId);
             treeReadyToAdvance = false;
+            const tBtn = document.getElementById('treeNextBtn');
+            if (tBtn) {
+                tBtn.classList.add('opacity-0', 'pointer-events-none');
+                tBtn.classList.remove('animate-bounce');
+            }
             const textEl = document.getElementById('treeTextContainer');
             const hintEl = document.getElementById('treeContinueHint');
             textEl.classList.add('opacity-0', 'translate-y-4');
@@ -5737,7 +5771,15 @@
                 }
 
                 if (frame === 80) textEl.classList.remove('opacity-0', 'translate-y-4');
-                if (frame === 110) { hintEl.classList.remove('opacity-0'); treeReadyToAdvance = true; }
+                if (frame === 110) {
+                    hintEl.classList.remove('opacity-0');
+                    treeReadyToAdvance = true;
+                    const tBtn = document.getElementById('treeNextBtn');
+                    if (tBtn) {
+                        tBtn.classList.remove('opacity-0', 'pointer-events-none');
+                        tBtn.classList.add('animate-bounce');
+                    }
+                }
                 treeAnimId = requestAnimationFrame(animateTree);
             }
             treeAnimId = requestAnimationFrame(animateTree);
@@ -5871,6 +5913,11 @@
 
         function initCakeBakingScene() {
             cakeReadyToAdvance = false; candleBlownOut = false;
+            const cBtn = document.getElementById('cakeNextBtn');
+            if (cBtn) {
+                cBtn.classList.add('hidden');
+                cBtn.classList.remove('flex', 'animate-bounce');
+            }
             ['cake-plate', 'cake-bottom', 'cake-top', 'cake-frosting', 'cake-candle', 'cake-flame'].forEach(id => document.getElementById(id).classList.remove('dropped'));
             document.getElementById('candleFlameInner').classList.remove('opacity-0', 'scale-0');
             document.getElementById('candleSmoke').classList.add('opacity-0');
@@ -5927,9 +5974,11 @@
             spawnConfettiBurst(cx, cy, 70);
             spawnClickButterflies(cx, cy, 8);
             showRomanticToast('🍰 So sweet! Just like my Cute Pondati Malathi! 🥰❤️');
-            setTimeout(() => {
-                if (currentScene === 5) goToSceneInternal(6);
-            }, 1400);
+            const cakeNext = document.getElementById('cakeNextBtn');
+            if (cakeNext) {
+                cakeNext.classList.remove('hidden');
+                cakeNext.classList.add('flex', 'animate-bounce');
+            }
         }
 
         function handleCakeSceneTapInternal() {
@@ -5993,7 +6042,7 @@
                     poppedCount++;
                     if (poppedCount === 5) {
                         setTimeout(() => { footer.classList.remove('hidden'); requestAnimationFrame(() => footer.classList.remove('opacity-0')); }, 450);
-                        setTimeout(() => { if (currentScene === 6) goToSceneInternal(7); }, 2200);
+                        // Auto jump removed: user clicks 'Next: Wish River ✨' footer button
                     }
                 };
                 balloonsContainer.appendChild(wrapper);
