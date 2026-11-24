@@ -1431,19 +1431,23 @@
             opacity: 1;
         }
     
-        /* ==========================================
-           KAWAII ROMANTIC CAT COUPLE (SHIYAM & EN CUTE PAAPA)
-           ========================================== */
+        
+        /* ==========================================================================
+           HYPER-REALISTIC DYNAMIC CAT ROMANCE (SHIYAM & EN CUTE PAAPA)
+           Multi-pose, Multi-directional, Life-like Feline Physics & Interactions
+           ========================================================================== */
         .cat-romance-companion {
             position: fixed;
-            bottom: 14px;
-            left: 14px;
             z-index: 45;
-            width: 105px;
-            height: 78px;
-            filter: drop-shadow(0 8px 22px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 15px rgba(250, 204, 21, 0.35));
+            width: 120px;
+            height: 88px;
+            filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 16px rgba(250, 204, 21, 0.4));
             cursor: pointer;
-            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: left 0.75s cubic-bezier(0.34, 1.25, 0.64, 1),
+                        right 0.75s cubic-bezier(0.34, 1.25, 0.64, 1),
+                        bottom 0.75s cubic-bezier(0.34, 1.25, 0.64, 1),
+                        top 0.75s cubic-bezier(0.34, 1.25, 0.64, 1),
+                        transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
             touch-action: manipulation;
             user-select: none;
             -webkit-user-select: none;
@@ -1451,79 +1455,282 @@
 
         @media (min-width: 640px) {
             .cat-romance-companion {
-                bottom: 22px;
-                left: 22px;
-                width: 135px;
-                height: 98px;
+                width: 148px;
+                height: 108px;
             }
         }
 
-        .cat-romance-companion:hover {
-            transform: scale(1.08) translateY(-3px);
+        /* --- Dynamic Positions Across Screen --- */
+        .cat-romance-companion.pos-bottom-left {
+            bottom: 14px;
+            left: 14px;
+            right: auto;
+            top: auto;
+        }
+        @media (min-width: 640px) {
+            .cat-romance-companion.pos-bottom-left {
+                bottom: 22px;
+                left: 22px;
+            }
         }
 
-        .cat-romance-companion:active,
-        .cat-romance-companion.kissing {
-            transform: scale(0.95);
+        .cat-romance-companion.pos-bottom-right {
+            bottom: 14px;
+            right: 14px;
+            left: auto;
+            top: auto;
+        }
+        @media (min-width: 640px) {
+            .cat-romance-companion.pos-bottom-right {
+                bottom: 22px;
+                right: 22px;
+            }
+        }
+
+        .cat-romance-companion.pos-bottom-center {
+            bottom: 12px;
+            left: 50%;
+            right: auto;
+            top: auto;
+            margin-left: -60px;
+        }
+        @media (min-width: 640px) {
+            .cat-romance-companion.pos-bottom-center {
+                bottom: 18px;
+                margin-left: -74px;
+            }
+        }
+
+        .cat-romance-companion.pos-top-right {
+            top: 68px;
+            right: 12px;
+            bottom: auto;
+            left: auto;
+        }
+
+        /* --- Dynamic Facing Directions --- */
+        .cat-romance-companion.dir-left svg {
+            transform: scaleX(-1);
+        }
+        .cat-romance-companion.dir-right svg {
+            transform: scaleX(1);
+        }
+
+        /* Walking Stroll Animation when repositioning */
+        .cat-romance-companion.cat-walking {
+            animation: catStrollBounce 0.35s ease-in-out infinite alternate;
+        }
+        @keyframes catStrollBounce {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-8px) rotate(2deg); }
         }
 
         .cat-romance-svg {
             width: 100%;
             height: 100%;
             overflow: visible;
+            transform-origin: center bottom;
+            transition: transform 0.4s ease;
         }
 
-        /* Nuzzling Heads */
-        .boy-head {
-            animation: boyHeadRomance 3.4s ease-in-out infinite;
-            transform-origin: 58px 58px;
+        /* --- Realistic Organic Feline Breathing --- */
+        .shiyam-body-rig,
+        .paapa-body-rig {
+            animation: catOrganicBreath 2.8s ease-in-out infinite;
+            transform-origin: 85px 95px;
+        }
+        .paapa-body-rig {
+            animation-delay: 0.25s;
         }
 
-        @keyframes boyHeadRomance {
-            0%, 100% { transform: rotate(5deg); }
-            50% { transform: rotate(11deg) translate(2.5px, 1px); }
+        @keyframes catOrganicBreath {
+            0%, 100% { transform: scale(1, 1); }
+            50% { transform: scale(1.025, 1.045); }
         }
 
-        .girl-head {
-            animation: girlHeadRomance 3.4s ease-in-out infinite;
-            transform-origin: 96px 58px;
+        .cat-ground-shadow {
+            animation: catShadowBreath 2.8s ease-in-out infinite;
+            transform-origin: 85px 106px;
+        }
+        @keyframes catShadowBreath {
+            0%, 100% { transform: scale(1); opacity: 0.32; }
+            50% { transform: scale(1.06); opacity: 0.42; }
         }
 
-        @keyframes girlHeadRomance {
-            0%, 100% { transform: rotate(-5deg); }
-            50% { transform: rotate(-12deg) translate(-2.5px, 1px); }
+        /* --- Independent Realistic Ear Twitches --- */
+        .boy-ear-left {
+            animation: earTwitchL 4.5s ease-in-out infinite;
+        }
+        .boy-ear-right {
+            animation: earTwitchR 5.2s ease-in-out infinite 0.7s;
+        }
+        .girl-ear-left {
+            animation: earTwitchL 4.8s ease-in-out infinite 1.2s;
+        }
+        .girl-ear-right {
+            animation: earTwitchR 4.2s ease-in-out infinite 2s;
         }
 
-        /* Kiss Action */
-        .cat-romance-companion.kissing .boy-head {
-            transform: rotate(14deg) translate(4px, 2px) !important;
-            transition: transform 0.15s ease;
+        @keyframes earTwitchL {
+            0%, 92%, 100% { transform: rotate(0deg); }
+            94% { transform: rotate(-8deg); }
+            97% { transform: rotate(5deg); }
         }
-        .cat-romance-companion.kissing .girl-head {
-            transform: rotate(-15deg) translate(-4px, 2px) !important;
-            transition: transform 0.15s ease;
-        }
-
-        /* Tail Heart Sway */
-        .boy-tail {
-            animation: boyTailSway 2.8s ease-in-out infinite;
-            transform-origin: 38px 90px;
+        @keyframes earTwitchR {
+            0%, 90%, 100% { transform: rotate(0deg); }
+            93% { transform: rotate(9deg); }
+            96% { transform: rotate(-6deg); }
         }
 
-        @keyframes boyTailSway {
+        /* --- Whiskers Subtle Tremble --- */
+        .boy-whiskers, .girl-whiskers {
+            animation: whiskersTremble 3.6s ease-in-out infinite;
+            transform-origin: 62px 64px;
+        }
+        @keyframes whiskersTremble {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.04, 0.98); }
+        }
+
+        /* --- Realistic Fluid Tail Physics --- */
+        .shiyam-tail-rig {
+            animation: shiyamTailWave 3.2s ease-in-out infinite;
+            transform-origin: 40px 98px;
+        }
+        @keyframes shiyamTailWave {
             0%, 100% { transform: rotate(0deg); }
-            50% { transform: rotate(-6deg); }
+            50% { transform: rotate(-7deg); }
         }
 
-        .girl-tail {
-            animation: girlTailSway 2.8s ease-in-out infinite;
-            transform-origin: 115px 90px;
+        .paapa-tail-rig {
+            animation: paapaTailWave 3.2s ease-in-out infinite 0.3s;
+            transform-origin: 124px 98px;
         }
-
-        @keyframes girlTailSway {
+        @keyframes paapaTailWave {
             0%, 100% { transform: rotate(0deg); }
-            50% { transform: rotate(6deg); }
+            50% { transform: rotate(7deg); }
         }
+
+        /* --- Natural Blinking Eyes Engine --- */
+        .cat-eyes-group .cat-eye-open {
+            animation: catEyeBlink 4.2s ease-in-out infinite;
+            transform-origin: center;
+        }
+        .girl-eyes .cat-eye-open {
+            animation-delay: 0.15s;
+        }
+
+        @keyframes catEyeBlink {
+            0%, 94%, 98%, 100% { transform: scaleY(1); opacity: 1; }
+            96% { transform: scaleY(0.08); opacity: 0.85; }
+        }
+
+        /* Default Eye Visibility */
+        .cat-eye-open { display: block; }
+        .cat-eye-happy { display: none; }
+        .cat-tongue-lick { display: none; opacity: 0; }
+        .cat-kiss-burst { opacity: 0; transform: scale(0); transition: all 0.25s ease; }
+
+        /* ========================================================
+           DYNAMIC ROMANCE POSES (STATE MACHINE)
+           ======================================================== */
+
+        /* 1. POSE: NUZZLE & CHEEK BUNTING */
+        .cat-romance-companion.pose-nuzzle .shiyam-head-rig {
+            transform: rotate(10deg) translate(2.5px, 1px);
+            transition: transform 0.6s ease;
+        }
+        .cat-romance-companion.pose-nuzzle .paapa-head-rig {
+            transform: rotate(-11deg) translate(-2.5px, 1px);
+            transition: transform 0.6s ease;
+        }
+        .cat-romance-companion.pose-nuzzle .cat-eye-open { display: none; }
+        .cat-romance-companion.pose-nuzzle .cat-eye-happy { display: block; }
+
+        /* 2. POSE: GENTLE LICKING / GROOMING */
+        .cat-romance-companion.pose-groom .shiyam-head-rig {
+            transform: rotate(14deg) translate(4px, 2px);
+            transition: transform 0.5s ease;
+        }
+        .cat-romance-companion.pose-groom .paapa-head-rig {
+            transform: rotate(-14deg) translate(-2px, 2px);
+            transition: transform 0.5s ease;
+        }
+        .cat-romance-companion.pose-groom .cat-tongue-lick {
+            display: block;
+            opacity: 1;
+            animation: tongueLick 0.5s ease-in-out infinite alternate;
+        }
+        @keyframes tongueLick {
+            0% { transform: translate(0, 0) scale(0.9); }
+            100% { transform: translate(2px, 1px) scale(1.1); }
+        }
+        .cat-romance-companion.pose-groom .cat-eye-open { display: none; }
+        .cat-romance-companion.pose-groom .cat-eye-happy { display: block; }
+
+        /* 3. POSE: TAIL-HEART SYNCHRONIZED */
+        .cat-romance-companion.pose-tail-heart .cat-tail-heart-beating {
+            animation: tailHeartGlowPulse 1.6s ease-in-out infinite;
+        }
+        .cat-romance-companion.pose-tail-heart .shiyam-tail-rig {
+            animation: shiyamTailHeartHold 2s ease-in-out infinite alternate;
+        }
+        .cat-romance-companion.pose-tail-heart .paapa-tail-rig {
+            animation: paapaTailHeartHold 2s ease-in-out infinite alternate;
+        }
+        @keyframes shiyamTailHeartHold {
+            0% { transform: rotate(-3deg); }
+            100% { transform: rotate(1deg); }
+        }
+        @keyframes paapaTailHeartHold {
+            0% { transform: rotate(3deg); }
+            100% { transform: rotate(-1deg); }
+        }
+
+        /* 4. POSE: DEEP ROMANTIC SLOW BLINK */
+        .cat-romance-companion.pose-slow-blink .shiyam-head-rig {
+            transform: rotate(6deg);
+        }
+        .cat-romance-companion.pose-slow-blink .paapa-head-rig {
+            transform: rotate(-6deg);
+        }
+        .cat-romance-companion.pose-slow-blink .cat-eye-open {
+            animation: catSlowBlink 3.2s ease-in-out infinite;
+        }
+        @keyframes catSlowBlink {
+            0%, 20%, 80%, 100% { transform: scaleY(1); }
+            45%, 65% { transform: scaleY(0.12); }
+        }
+
+        /* 5. POSE: CUDDLE & NAP */
+        .cat-romance-companion.pose-cuddle-sleep .shiyam-head-rig {
+            transform: rotate(8deg) translateY(4px);
+        }
+        .cat-romance-companion.pose-cuddle-sleep .paapa-head-rig {
+            transform: rotate(-9deg) translateY(4px);
+        }
+        .cat-romance-companion.pose-cuddle-sleep .cat-eye-open { display: none; }
+        .cat-romance-companion.pose-cuddle-sleep .cat-eye-happy { display: block; }
+        .cat-romance-companion.pose-cuddle-sleep .shiyam-body-rig,
+        .cat-romance-companion.pose-cuddle-sleep .paapa-body-rig {
+            animation-duration: 3.8s;
+        }
+
+        /* 6. INSTANT KISS ACTION (ON TAP / CLICK) */
+        .cat-romance-companion.kissing .shiyam-head-rig {
+            transform: rotate(16deg) translate(6px, 2px) !important;
+            transition: transform 0.18s ease;
+        }
+        .cat-romance-companion.kissing .paapa-head-rig {
+            transform: rotate(-17deg) translate(-6px, 2px) !important;
+            transition: transform 0.18s ease;
+        }
+        .cat-romance-companion.kissing .cat-kiss-burst {
+            opacity: 1 !important;
+            transform: scale(1.4) !important;
+        }
+        .cat-romance-companion.kissing .cat-eye-open { display: none !important; }
+        .cat-romance-companion.kissing .cat-eye-happy { display: block !important; }
 
         /* Floating Romance Hearts */
         .cat-floating-heart {
@@ -1531,48 +1738,23 @@
             animation: catHeartRise 2.4s ease-in-out infinite;
             opacity: 0;
         }
-
         .cat-floating-heart.heart-1 { animation-delay: 0s; }
         .cat-floating-heart.heart-2 { animation-delay: 0.8s; }
         .cat-floating-heart.heart-3 { animation-delay: 1.6s; }
 
         @keyframes catHeartRise {
-            0% {
-                transform: translateY(10px) scale(0.4);
-                opacity: 0;
-            }
-            30% {
-                opacity: 1;
-                transform: translateY(0px) scale(1);
-            }
-            70% {
-                opacity: 0.9;
-                transform: translateY(-16px) scale(1.15) rotate(8deg);
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(-30px) scale(0.6) rotate(-10deg);
-            }
-        }
-
-        /* Tail Heart Glow Pulse */
-        .tail-heart-glow {
-            transform-origin: 80px 58px;
-            animation: tailHeartGlowPulse 2.8s ease-in-out infinite;
+            0% { transform: translateY(10px) scale(0.4); opacity: 0; }
+            30% { opacity: 1; transform: translateY(0px) scale(1); }
+            70% { opacity: 0.9; transform: translateY(-16px) scale(1.15) rotate(8deg); }
+            100% { opacity: 0; transform: translateY(-30px) scale(0.6) rotate(-10deg); }
         }
 
         @keyframes tailHeartGlowPulse {
-            0%, 100% {
-                transform: scale(0.92);
-                opacity: 0.45;
-            }
-            50% {
-                transform: scale(1.12);
-                opacity: 0.95;
-            }
+            0%, 100% { transform: scale(0.92); opacity: 0.45; }
+            50% { transform: scale(1.14); opacity: 0.95; }
         }
 
-        /* Speech Bubble Above Cats */
+        /* Speech Bubble */
         .cat-speech-bubble {
             position: absolute;
             top: -24px;
@@ -1591,7 +1773,6 @@
             opacity: 0.95;
             transition: opacity 0.3s ease, transform 0.3s ease;
         }
-
         .cat-speech-bubble::after {
             content: '';
             position: absolute;
@@ -5033,7 +5214,7 @@
             if (targetEl) targetEl.classList.add('active');
 
             currentScene = index;
-            updateCatRomanceDialogue(index);
+            applySceneCatConfig(index);
             fireworksActive = (index === 9);
 
             if (index === -2) initLockScreen();
@@ -7022,28 +7203,35 @@
         });
     
 
-        /* ==========================================
-           CAT ROMANCE INTERACTIVE CONTROLLER
-           ========================================== */
-        const CAT_SCENE_DIALOGUES = {
-            "-3": "Shiyam & Paapa 🌙",
-            "-2": "Enter Secret PIN 🔐",
-            "-1.5": "Blooming Lily 🌸",
-            "-1": "Love Messages 💌",
-            "0": "Flower Petals ✨",
-            "1": "Unwrap Surprise 🎁",
-            "2": "Cupid's Love 🏹",
-            "3": "Happy Birthday Di! 🎂",
-            "4": "Our Love Tree 🌳",
-            "4.5": "Kawaii Hugs 🧸",
-            "5": "Yummy Cake 🍰",
-            "6": "Pop 5 Balloons 🎈",
-            "7": "Wish River 🏮",
-            "8": "Royal Love Letter 📜",
-            "8.5": "Rain Romance 🌧️",
-            "9": "Grand Finale 👑",
-            "10": "Rainbow Heart 💖",
-            "11": "Divine Fireworks 🎆"
+        
+
+        /* ==========================================================================
+           HYPER-REALISTIC DYNAMIC CAT ROMANCE CONTROLLER
+           ========================================================================== */
+        const CAT_POSES = ['pose-nuzzle', 'pose-groom', 'pose-tail-heart', 'pose-slow-blink', 'pose-cuddle-sleep'];
+        let currentCatPoseIdx = 0;
+        let catPoseCycleTimer = null;
+
+        // Scene-Specific Configurations: Position, Facing Direction, Default Pose, Dialogue
+        const SCENE_CAT_CONFIGS = {
+            "-3":   { pos: "pos-bottom-center", dir: "dir-right", pose: "pose-tail-heart",  text: "Shiyam & Paapa 🌙" },
+            "-2":   { pos: "pos-bottom-right",  dir: "dir-left",  pose: "pose-nuzzle",      text: "Secret PIN 🔐" },
+            "-1.5": { pos: "pos-bottom-left",   dir: "dir-right", pose: "pose-slow-blink",  text: "Blooming Lily 🌸" },
+            "-1":   { pos: "pos-top-right",     dir: "dir-left",  pose: "pose-groom",       text: "Love Messages 💌" },
+            "0":    { pos: "pos-bottom-left",   dir: "dir-right", pose: "pose-nuzzle",      text: "Flower Petals ✨" },
+            "1":    { pos: "pos-bottom-right",  dir: "dir-left",  pose: "pose-tail-heart",  text: "Unwrap Surprise 🎁" },
+            "2":    { pos: "pos-bottom-left",   dir: "dir-right", pose: "pose-groom",       text: "Cupid's Love 🏹" },
+            "3":    { pos: "pos-bottom-center", dir: "dir-right", pose: "pose-nuzzle",      text: "Happy Birthday Di! 🎂" },
+            "4":    { pos: "pos-bottom-right",  dir: "dir-left",  pose: "pose-cuddle-sleep",text: "Our Love Tree 🌳" },
+            "4.5":  { pos: "pos-bottom-left",   dir: "dir-right", pose: "pose-nuzzle",      text: "Kawaii Hugs 🧸" },
+            "5":    { pos: "pos-bottom-right",  dir: "dir-left",  pose: "pose-groom",       text: "Yummy Cake 🍰" },
+            "6":    { pos: "pos-bottom-left",   dir: "dir-right", pose: "pose-slow-blink",  text: "Pop 5 Balloons 🎈" },
+            "7":    { pos: "pos-bottom-right",  dir: "dir-left",  pose: "pose-tail-heart",  text: "Wish River 🏮" },
+            "8":    { pos: "pos-bottom-left",   dir: "dir-right", pose: "pose-nuzzle",      text: "Royal Love Letter 📜" },
+            "8.5":  { pos: "pos-bottom-center", dir: "dir-right", pose: "pose-cuddle-sleep",text: "Rain Romance 🌧️" },
+            "9":    { pos: "pos-bottom-left",   dir: "dir-right", pose: "pose-nuzzle",      text: "Grand Finale 👑" },
+            "10":   { pos: "pos-bottom-center", dir: "dir-right", pose: "pose-tail-heart",  text: "Rainbow Heart 💖" },
+            "11":   { pos: "pos-bottom-right",  dir: "dir-left",  pose: "pose-nuzzle",      text: "Divine Fireworks 🎆" }
         };
 
         const CAT_ROMANCE_KISS_TOASTS = [
@@ -7054,127 +7242,343 @@
             "👑 En Cute Paapa Malathi is the Queen of Shiyam's Heart! ❤️"
         ];
 
-        function triggerCatRomanceKiss(e) {
+        // Synthesize Real Feline Purr & Meow Chirp via Web Audio
+        function playRealisticCatPurr() {
+            try {
+                const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                if (!AudioCtx) return;
+                if (!audioCtx) audioCtx = new AudioCtx();
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+
+                const now = audioCtx.currentTime;
+                // Low-frequency modulated purr
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                const lfo = audioCtx.createOscillator();
+                const lfoGain = audioCtx.createGain();
+
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(28, now); // Cat purr base ~28Hz
+
+                lfo.frequency.setValueAtTime(25, now);
+                lfoGain.gain.setValueAtTime(15, now);
+                lfo.connect(osc.frequency);
+
+                gain.gain.setValueAtTime(0.001, now);
+                gain.gain.linearRampToValueAtTime(0.04, now + 0.1);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.9);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                lfo.start(now);
+                osc.start(now);
+                lfo.stop(now + 0.9);
+                osc.stop(now + 0.9);
+
+                // Cute high chirpy meow accent
+                playPopSound(760);
+                setTimeout(() => playPopSound(920), 110);
+            } catch(e) {
+                playPopSound(780);
+            }
+        }
+
+        function setCatRomancePose(poseName) {
+            const widget = document.getElementById('globalCatRomanceWidget');
+            if (!widget) return;
+            CAT_POSES.forEach(p => widget.classList.remove(p));
+            widget.classList.add(poseName);
+        }
+
+        function setCatRomancePosition(posClass, dirClass) {
+            const widget = document.getElementById('globalCatRomanceWidget');
+            if (!widget) return;
+            widget.classList.remove('pos-bottom-left', 'pos-bottom-right', 'pos-bottom-center', 'pos-top-right', 'dir-left', 'dir-right');
+            widget.classList.add('cat-walking');
+            widget.classList.add(posClass, dirClass);
+            setTimeout(() => widget.classList.remove('cat-walking'), 750);
+        }
+
+        function cycleNextCatPose() {
+            currentCatPoseIdx = (currentCatPoseIdx + 1) % CAT_POSES.length;
+            setCatRomancePose(CAT_POSES[currentCatPoseIdx]);
+        }
+
+        function startCatPoseAutocycle() {
+            if (catPoseCycleTimer) clearInterval(catPoseCycleTimer);
+            catPoseCycleTimer = setInterval(() => {
+                const widget = document.getElementById('globalCatRomanceWidget');
+                if (widget && !widget.classList.contains('kissing')) {
+                    cycleNextCatPose();
+                }
+            }, 6000);
+        }
+
+        function handleCatRomanceClick(e) {
             if (e) e.stopPropagation();
             const widget = document.getElementById('globalCatRomanceWidget');
             const bubble = document.getElementById('catSpeechBubble');
-            if (widget) {
-                widget.classList.add('kissing');
-                setTimeout(() => widget.classList.remove('kissing'), 900);
-            }
+            if (!widget) return;
+
+            // Trigger intense kiss action
+            widget.classList.add('kissing');
+            playRealisticCatPurr();
+
             if (bubble) {
                 bubble.textContent = "Chu~ 💋 Meow!";
-                setTimeout(() => updateCatRomanceDialogue(currentScene), 1500);
             }
-            playPopSound(740);
-            setTimeout(() => playPopSound(880), 120);
 
-            // Spawn floating mini hearts
-            const rect = widget ? widget.getBoundingClientRect() : { left: 40, top: window.innerHeight - 80 };
-            const heartX = rect.left + 55;
-            const heartY = rect.top + 20;
-            spawnClickButterflies(heartX, heartY, 5);
+            // Burst of golden & pink romantic heart sparkles
+            const rect = widget.getBoundingClientRect();
+            const heartX = rect.left + rect.width / 2;
+            const heartY = rect.top + 25;
+            spawnClickButterflies(heartX, heartY, 6);
 
             const randomToast = CAT_ROMANCE_KISS_TOASTS[Math.floor(Math.random() * CAT_ROMANCE_KISS_TOASTS.length)];
             showRomanticToast(randomToast);
+
+            setTimeout(() => {
+                widget.classList.remove('kissing');
+                // Toggle direction and position on click for dynamic fun!
+                if (widget.classList.contains('pos-bottom-left')) {
+                    setCatRomancePosition('pos-bottom-right', 'dir-left');
+                } else if (widget.classList.contains('pos-bottom-right')) {
+                    setCatRomancePosition('pos-bottom-center', 'dir-right');
+                } else {
+                    setCatRomancePosition('pos-bottom-left', 'dir-right');
+                }
+                updateCatRomanceDialogue(currentScene);
+            }, 1100);
+        }
+
+        function applySceneCatConfig(sceneIndex) {
+            const conf = SCENE_CAT_CONFIGS[String(sceneIndex)] || { pos: "pos-bottom-left", dir: "dir-right", pose: "pose-nuzzle", text: "Shiyam ❤️ Paapa" };
+            setCatRomancePosition(conf.pos, conf.dir);
+            setCatRomancePose(conf.pose);
+            const bubble = document.getElementById('catSpeechBubble');
+            if (bubble) bubble.textContent = conf.text;
         }
 
         function updateCatRomanceDialogue(sceneIndex) {
+            const conf = SCENE_CAT_CONFIGS[String(sceneIndex)];
             const bubble = document.getElementById('catSpeechBubble');
-            if (!bubble) return;
-            const txt = CAT_SCENE_DIALOGUES[String(sceneIndex)] || "Shiyam ❤️ Paapa";
-            bubble.textContent = txt;
+            if (bubble && conf) {
+                bubble.textContent = conf.text;
+            }
         }
 
-        window.triggerCatRomanceKiss = triggerCatRomanceKiss;
+        // Initialize position & pose for current scene
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                applySceneCatConfig(typeof currentScene !== 'undefined' ? currentScene : -3);
+                startCatPoseAutocycle();
+            });
+        } else {
+            applySceneCatConfig(typeof currentScene !== 'undefined' ? currentScene : -3);
+            startCatPoseAutocycle();
+        }
+
+        window.handleCatRomanceClick = handleCatRomanceClick;
+        window.triggerCatRomanceKiss = handleCatRomanceClick;
+        window.applySceneCatConfig = applySceneCatConfig;
+        window.setCatRomancePose = setCatRomancePose;
+        window.setCatRomancePosition = setCatRomancePosition;
 
 </script>
 
-<!-- ==========================================
-     GLOBAL KAWAII ROMANTIC CAT COUPLE COMPANION (SHIYAM & EN CUTE PAAPA)
-     Romances across all scenes!
-     ========================================== -->
-<div id="globalCatRomanceWidget" class="cat-romance-companion" onclick="triggerCatRomanceKiss(event)" title="Shiyam & Paapa Romance! Tap to kiss ❤️">
+<div id="globalCatRomanceWidget" class="cat-romance-companion pos-bottom-left dir-right pose-nuzzle" onclick="handleCatRomanceClick(event)" title="Shiyam & En Cute Paapa ❤️ Tap to kiss or change position!">
     <div id="catSpeechBubble" class="cat-speech-bubble">Shiyam ❤️ Paapa</div>
-    <svg class="cat-romance-svg" viewBox="0 0 160 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="80" cy="98" rx="55" ry="7" fill="rgba(0,0,0,0.3)" />
+    
+    <svg class="cat-romance-svg" viewBox="0 0 170 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="catEyeGold" cx="40%" cy="40%" r="60%">
+          <stop offset="0%" stop-color="#fef08a"/>
+          <stop offset="60%" stop-color="#eab308"/>
+          <stop offset="100%" stop-color="#854d0e"/>
+        </radialGradient>
+        <radialGradient id="catEyeAqua" cx="40%" cy="40%" r="60%">
+          <stop offset="0%" stop-color="#a5f3fc"/>
+          <stop offset="60%" stop-color="#06b6d4"/>
+          <stop offset="100%" stop-color="#0e7490"/>
+        </radialGradient>
+      </defs>
 
-      <!-- Animated Floating Romance Hearts -->
-      <g class="cat-love-hearts">
-        <path class="cat-floating-heart heart-1" d="M80 32 C78 28, 70 26, 70 33 C70 40, 80 47, 80 47 C80 47, 90 40, 90 33 C90 26, 82 28, 80 32 Z" fill="#f43f5e"/>
-        <path class="cat-floating-heart heart-2" d="M84 22 C82 19, 75 17, 75 23 C75 29, 84 35, 84 35 C84 35, 93 29, 93 23 C93 17, 86 19, 84 22 Z" fill="#fbbf24"/>
-        <path class="cat-floating-heart heart-3" d="M76 12 C74.5 9, 68 8, 68 13 C68 18, 76 23, 76 23 C76 23, 84 18, 84 13 C84 8, 77.5 9, 76 12 Z" fill="#38bdf8"/>
-      </g>
+      <!-- Soft Ground Contact Shadow with breathing scale -->
+      <ellipse class="cat-ground-shadow" cx="85" cy="106" rx="60" ry="8" fill="rgba(0,0,0,0.32)" />
 
-      <!-- ==================== LEFT CAT: SHIYAM (BOY CAT) ==================== -->
-      <g class="cat-boy" transform-origin="55 85">
-        <!-- Tail forming half heart -->
-        <path class="cat-tail boy-tail" d="M 38 90 C 22 92, 10 78, 16 62 C 22 46, 38 52, 44 65" stroke="#1e293b" stroke-width="7" stroke-linecap="round" fill="none"/>
-        <ellipse cx="56" cy="82" rx="20" ry="18" fill="#1e293b"/>
-        <ellipse cx="60" cy="84" rx="11" ry="12" fill="#e2e8f0"/>
-        <ellipse cx="46" cy="96" rx="6" ry="4" fill="#f8fafc"/>
-        <ellipse cx="64" cy="96" rx="6" ry="4" fill="#f8fafc"/>
-
-        <!-- Head -->
-        <g class="cat-head boy-head">
-          <polygon points="40,48 45,26 58,40" fill="#1e293b"/>
-          <polygon points="44,45 47,30 55,40" fill="#f472b6" opacity="0.65"/>
-          <polygon points="62,40 74,28 76,50" fill="#1e293b"/>
-          <polygon points="65,41 71,32 73,48" fill="#f472b6" opacity="0.65"/>
-          <circle cx="58" cy="56" r="18" fill="#1e293b"/>
-          <ellipse cx="62" cy="61" rx="10" ry="7" fill="#f8fafc"/>
-          <ellipse cx="48" cy="61" rx="3.5" ry="2" fill="#fb7185" opacity="0.8"/>
-          <ellipse cx="68" cy="61" rx="3" ry="2" fill="#fb7185" opacity="0.8"/>
-          <path d="M 48 55 Q 52 50 56 55" stroke="#0f172a" stroke-width="2" stroke-linecap="round" fill="none"/>
-          <path d="M 64 55 Q 68 50 72 55" stroke="#0f172a" stroke-width="2" stroke-linecap="round" fill="none"/>
-          <polygon points="62,59 60,62 64,62" fill="#f43f5e"/>
-          <path d="M 60 62 Q 62 64 64 62 Q 66 64 68 62" stroke="#0f172a" stroke-width="1.2" stroke-linecap="round" fill="none"/>
-          <line x1="43" y1="58" x2="34" y2="56" stroke="#94a3b8" stroke-width="1" stroke-linecap="round"/>
-          <line x1="43" y1="62" x2="33" y2="63" stroke="#94a3b8" stroke-width="1" stroke-linecap="round"/>
-          <!-- Royal Collar & Gold Bell -->
-          <path d="M 50 71 Q 58 75 66 71" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-          <circle cx="58" cy="74" r="2.5" fill="#facc15" stroke="#ca8a04" stroke-width="0.5"/>
+      <!-- Floating Dynamic Romance Hearts -->
+      <g class="cat-heart-fountain">
+        <path class="cat-floating-heart heart-1" d="M85 36 C82 30, 72 28, 72 36 C72 44, 85 52, 85 52 C85 52, 98 44, 98 36 C98 28, 88 30, 85 36 Z" fill="#f43f5e"/>
+        <path class="cat-floating-heart heart-2" d="M90 24 C88 20, 80 18, 80 24 C80 30, 90 36, 90 36 C90 36, 100 30, 100 24 C100 18, 92 20, 90 24 Z" fill="#facc15"/>
+        <path class="cat-floating-heart heart-3" d="M78 14 C76 10, 70 9, 70 14 C70 19, 78 24, 78 24 C78 24, 86 19, 86 14 C86 9, 80 10, 78 14 Z" fill="#38bdf8"/>
+        <!-- Kiss Sparkle Burst -->
+        <g class="cat-kiss-burst">
+          <circle cx="85" cy="58" r="3" fill="#fde047" />
+          <path d="M 85 48 L 85 68 M 75 58 L 95 58" stroke="#fde047" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M 78 51 L 92 65 M 78 65 L 92 51" stroke="#38bdf8" stroke-width="1.2" stroke-linecap="round"/>
         </g>
       </g>
 
-      <!-- ==================== RIGHT CAT: PAAPA (GIRL CAT) ==================== -->
-      <g class="cat-girl" transform-origin="98 85">
-        <!-- Tail forming second half of heart -->
-        <path class="cat-tail girl-tail" d="M 115 90 C 132 92, 144 78, 138 62 C 132 46, 116 52, 110 65" stroke="#f8fafc" stroke-width="7" stroke-linecap="round" fill="none"/>
-        <ellipse cx="98" cy="83" rx="19" ry="17" fill="#ffffff" stroke="#f1f5f9" stroke-width="0.5"/>
-        <ellipse cx="94" cy="85" rx="10" ry="11" fill="#fff5f5"/>
-        <ellipse cx="88" cy="96" rx="6" ry="4" fill="#ffffff"/>
-        <ellipse cx="106" cy="96" rx="6" ry="4" fill="#ffffff"/>
+      <!-- ==================== SHIYAM (BOY CAT) ==================== -->
+      <g class="cat-char cat-shiyam" transform-origin="58 90">
+        <!-- Natural Multi-Segment Tail -->
+        <g class="cat-tail-rig shiyam-tail-rig">
+          <path class="cat-tail-segment boy-tail-path" d="M 40 98 C 20 100, 8 84, 14 66 C 19 50, 36 54, 44 68 C 50 78, 48 88, 42 98" stroke="#1e293b" stroke-width="8" stroke-linecap="round" fill="none"/>
+        </g>
 
-        <!-- Head -->
-        <g class="cat-head girl-head">
-          <polygon points="86,48 83,28 96,40" fill="#ffffff"/>
-          <polygon points="88,46 86,32 94,41" fill="#f472b6" opacity="0.6"/>
-          <polygon points="106,40 119,27 122,48" fill="#ffffff"/>
-          <polygon points="108,41 116,31 119,46" fill="#f472b6" opacity="0.6"/>
-          <circle cx="96" cy="57" r="17.5" fill="#ffffff" stroke="#f1f5f9" stroke-width="0.5"/>
-          <ellipse cx="86" cy="62" rx="3.5" ry="2" fill="#fb7185" opacity="0.85"/>
-          <ellipse cx="106" cy="62" rx="3.5" ry="2" fill="#fb7185" opacity="0.85"/>
-          <path d="M 85 56 Q 89 51 93 56" stroke="#475569" stroke-width="2" stroke-linecap="round" fill="none"/>
-          <path d="M 101 56 Q 105 51 109 56" stroke="#475569" stroke-width="2" stroke-linecap="round" fill="none"/>
-          <line x1="93" y1="54" x2="95" y2="52" stroke="#475569" stroke-width="1.2" stroke-linecap="round"/>
-          <line x1="109" y1="54" x2="111" y2="52" stroke="#475569" stroke-width="1.2" stroke-linecap="round"/>
-          <polygon points="98,60 96.5,63 99.5,63" fill="#f43f5e"/>
-          <path d="M 96.5 63 Q 98 65 99.5 63 Q 101 65 102.5 63" stroke="#475569" stroke-width="1.2" stroke-linecap="round" fill="none"/>
-          <line x1="110" y1="59" x2="119" y2="57" stroke="#cbd5e1" stroke-width="1" stroke-linecap="round"/>
-          <line x1="110" y1="63" x2="120" y2="64" stroke="#cbd5e1" stroke-width="1" stroke-linecap="round"/>
-          <!-- Golden Flower Hairpin -->
-          <g transform="translate(108, 38)">
-            <circle cx="0" cy="0" r="3" fill="#fbbf24"/>
-            <circle cx="-3" cy="-2" r="2.2" fill="#f43f5e"/>
-            <circle cx="3" cy="-2" r="2.2" fill="#f43f5e"/>
-            <circle cx="0" cy="3" r="2" fill="#f43f5e"/>
+        <!-- Body & Fur Details with realistic breathing expansion -->
+        <g class="cat-body-rig shiyam-body-rig">
+          <!-- Torso -->
+          <ellipse cx="60" cy="88" rx="22" ry="20" fill="#1e293b"/>
+          <!-- Fluffy Chest Fur -->
+          <path d="M 52 75 Q 64 78 70 75 Q 74 86 68 96 Q 58 100 52 94 Z" fill="#f1f5f9"/>
+          
+          <!-- Back Paws -->
+          <ellipse cx="44" cy="104" rx="7" ry="4.5" fill="#1e293b"/>
+          <!-- Front Paws with white socks -->
+          <ellipse cx="58" cy="104" rx="6.5" ry="4.5" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.5"/>
+          <ellipse class="shiyam-reaching-paw" cx="72" cy="103" rx="6.5" ry="4.5" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.5"/>
+        </g>
+
+        <!-- Head Group with Nuzzle, Blink, Ear Twitch -->
+        <g class="cat-head-rig shiyam-head-rig" transform-origin="60 62">
+          <!-- Ears with independent twitches -->
+          <g class="ear-left boy-ear-left" transform-origin="46 38">
+            <polygon points="42,50 44,24 60,40" fill="#1e293b"/>
+            <polygon points="46,47 47,28 58,40" fill="#f472b6" opacity="0.6"/>
+          </g>
+          <g class="ear-right boy-ear-right" transform-origin="72 38">
+            <polygon points="64,38 78,26 80,50" fill="#1e293b"/>
+            <polygon points="67,39 75,30 77,48" fill="#f472b6" opacity="0.6"/>
+          </g>
+
+          <!-- Head Contour & Cheeks -->
+          <circle cx="62" cy="60" r="20" fill="#1e293b"/>
+          <!-- White Muzzle Patch -->
+          <ellipse cx="67" cy="66" rx="11" ry="8" fill="#ffffff"/>
+          
+          <!-- Blushing Pink Cheeks -->
+          <ellipse cx="50" cy="66" rx="4.5" ry="2.8" fill="#fb7185" opacity="0.8"/>
+          <ellipse cx="74" cy="66" rx="4" ry="2.8" fill="#fb7185" opacity="0.8"/>
+
+          <!-- Eyes: Open Eyes + Blinking Eyelids -->
+          <g class="cat-eyes-group boy-eyes">
+            <!-- Open Golden Amber Eyes -->
+            <ellipse class="cat-eye-open" cx="53" cy="58" rx="4.5" ry="5.5" fill="url(#catEyeGold)"/>
+            <ellipse class="cat-eye-open" cx="53" cy="58" rx="2" ry="4.5" fill="#0f172a"/>
+            <circle class="cat-eye-open" cx="52" cy="56" r="1.5" fill="#ffffff"/>
+
+            <ellipse class="cat-eye-open" cx="71" cy="58" rx="4.5" ry="5.5" fill="url(#catEyeGold)"/>
+            <ellipse class="cat-eye-open" cx="71" cy="58" rx="2" ry="4.5" fill="#0f172a"/>
+            <circle class="cat-eye-open" cx="70" cy="56" r="1.5" fill="#ffffff"/>
+
+            <!-- Happy Closed Slits (Active in romance/nuzzle/kiss) -->
+            <path class="cat-eye-happy" d="M 49 59 Q 53 53 58 59" stroke="#0f172a" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+            <path class="cat-eye-happy" d="M 67 59 Q 71 53 76 59" stroke="#0f172a" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+          </g>
+
+          <!-- Nose & Mouth & Little Licking Tongue -->
+          <polygon points="67,64 64.5,67.5 69.5,67.5" fill="#f43f5e"/>
+          <path d="M 64.5 67.5 Q 67 70 69.5 67.5 Q 72 70 74.5 67.5" stroke="#0f172a" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+          <!-- Little Pink Tongue for kissing/licking -->
+          <path class="cat-tongue-lick" d="M 67 69 Q 71 74 74 70" stroke="#f43f5e" stroke-width="3" stroke-linecap="round" fill="none"/>
+
+          <!-- Whiskers with subtle flutter -->
+          <g class="cat-whiskers boy-whiskers">
+            <line x1="46" y1="64" x2="33" y2="61" stroke="#94a3b8" stroke-width="1.1" stroke-linecap="round"/>
+            <line x1="46" y1="67" x2="32" y2="68" stroke="#94a3b8" stroke-width="1.1" stroke-linecap="round"/>
+            <line x1="47" y1="70" x2="34" y2="74" stroke="#94a3b8" stroke-width="1.1" stroke-linecap="round"/>
+          </g>
+
+          <!-- Royal Midnight Blue Collar & Shining Golden Bell -->
+          <path d="M 52 76 Q 62 82 72 76" stroke="#2563eb" stroke-width="3.2" stroke-linecap="round" fill="none"/>
+          <circle cx="62" cy="80" r="3" fill="#facc15" stroke="#ca8a04" stroke-width="0.7"/>
+          <circle cx="62" cy="80" r="1.2" fill="#fffbeb"/>
+        </g>
+      </g>
+
+      <!-- ==================== EN CUTE PAAPA (GIRL CAT) ==================== -->
+      <g class="cat-char cat-paapa" transform-origin="106 90">
+        <!-- Natural Multi-Segment Tail -->
+        <g class="cat-tail-rig paapa-tail-rig">
+          <path class="cat-tail-segment girl-tail-path" d="M 124 98 C 144 100, 156 84, 150 66 C 145 50, 128 54, 120 68 C 114 78, 116 88, 122 98" stroke="#f8fafc" stroke-width="8" stroke-linecap="round" fill="none"/>
+        </g>
+
+        <!-- Fluffy Snow-White Body with breathing motion -->
+        <g class="cat-body-rig paapa-body-rig">
+          <ellipse cx="104" cy="89" rx="21" ry="19" fill="#ffffff" stroke="#f1f5f9" stroke-width="0.6"/>
+          <!-- Soft Pinkish Warm Belly -->
+          <ellipse cx="99" cy="91" rx="12" ry="13" fill="#fff5f5"/>
+
+          <!-- Paws -->
+          <ellipse class="paapa-touch-paw" cx="92" cy="103" rx="6.5" ry="4.5" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.5"/>
+          <ellipse cx="106" cy="104" rx="6.5" ry="4.5" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.5"/>
+          <ellipse cx="120" cy="104" rx="7" ry="4.5" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.5"/>
+        </g>
+
+        <!-- Head Group with Snuggle, Blinking, Golden Ear Flower -->
+        <g class="cat-head-rig paapa-head-rig" transform-origin="102 62">
+          <!-- Ears with independent twitches -->
+          <g class="ear-left girl-ear-left" transform-origin="92 38">
+            <polygon points="90,50 86,26 100,38" fill="#ffffff" stroke="#f1f5f9" stroke-width="0.5"/>
+            <polygon points="92,48 89,30 98,39" fill="#f472b6" opacity="0.55"/>
+          </g>
+          <g class="ear-right girl-ear-right" transform-origin="118 38">
+            <polygon points="112,38 126,25 128,49" fill="#ffffff" stroke="#f1f5f9" stroke-width="0.5"/>
+            <polygon points="114,39 123,29 125,47" fill="#f472b6" opacity="0.55"/>
+          </g>
+
+          <!-- Head Contour & Cheeks -->
+          <circle cx="102" cy="61" r="19.5" fill="#ffffff" stroke="#f1f5f9" stroke-width="0.6"/>
+          
+          <!-- Blushing Cheeks -->
+          <ellipse cx="90" cy="67" rx="4.5" ry="2.8" fill="#fb7185" opacity="0.88"/>
+          <ellipse cx="114" cy="67" rx="4.5" ry="2.8" fill="#fb7185" opacity="0.88"/>
+
+          <!-- Eyes: Open Aqua Blue Eyes + Happy Blissful Slits -->
+          <g class="cat-eyes-group girl-eyes">
+            <!-- Open Aqua Blue Eyes -->
+            <ellipse class="cat-eye-open" cx="92" cy="59" rx="4.5" ry="5.5" fill="url(#catEyeAqua)"/>
+            <ellipse class="cat-eye-open" cx="92" cy="59" rx="2" ry="4.5" fill="#083344"/>
+            <circle class="cat-eye-open" cx="91" cy="57" r="1.5" fill="#ffffff"/>
+
+            <ellipse class="cat-eye-open" cx="110" cy="59" rx="4.5" ry="5.5" fill="url(#catEyeAqua)"/>
+            <ellipse class="cat-eye-open" cx="110" cy="59" rx="2" ry="4.5" fill="#083344"/>
+            <circle class="cat-eye-open" cx="109" cy="57" r="1.5" fill="#ffffff"/>
+
+            <!-- Happy Curved Eyes with Eyelashes -->
+            <path class="cat-eye-happy" d="M 88 60 Q 92 54 96 60" stroke="#475569" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+            <path class="cat-eye-happy" d="M 106 60 Q 110 54 114 60" stroke="#475569" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+            <line class="cat-eye-happy" x1="96" y1="58" x2="98" y2="56" stroke="#475569" stroke-width="1.3" stroke-linecap="round"/>
+            <line class="cat-eye-happy" x1="114" y1="58" x2="116" y2="56" stroke="#475569" stroke-width="1.3" stroke-linecap="round"/>
+          </g>
+
+          <!-- Nose & Mouth -->
+          <polygon points="102,65 99.5,68.5 104.5,68.5" fill="#f43f5e"/>
+          <path d="M 99.5 68.5 Q 102 71 104.5 68.5 Q 107 71 109.5 68.5" stroke="#475569" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+
+          <!-- Whiskers -->
+          <g class="cat-whiskers girl-whiskers">
+            <line x1="117" y1="65" x2="128" y2="63" stroke="#cbd5e1" stroke-width="1.1" stroke-linecap="round"/>
+            <line x1="117" y1="68" x2="130" y2="69" stroke="#cbd5e1" stroke-width="1.1" stroke-linecap="round"/>
+            <line x1="116" y1="71" x2="127" y2="75" stroke="#cbd5e1" stroke-width="1.1" stroke-linecap="round"/>
+          </g>
+
+          <!-- Cute Golden Flower Hairpin with sparkling ruby center -->
+          <g transform="translate(116, 40)" class="cat-hair-flower">
+            <circle cx="0" cy="0" r="3.5" fill="#facc15" stroke="#ca8a04" stroke-width="0.5"/>
+            <circle cx="-3.5" cy="-2.5" r="2.6" fill="#f43f5e"/>
+            <circle cx="3.5" cy="-2.5" r="2.6" fill="#f43f5e"/>
+            <circle cx="-2" cy="3.5" r="2.6" fill="#f43f5e"/>
+            <circle cx="2" cy="3.5" r="2.6" fill="#f43f5e"/>
+            <circle cx="0" cy="0" r="1.8" fill="#fef08a"/>
           </g>
         </g>
       </g>
 
-      <!-- Heart formed by their intertwined tails -->
-      <path class="tail-heart-glow" d="M 80 50 C 76 43, 62 43, 62 54 C 62 65, 80 75, 80 75 C 80 75, 98 65, 98 54 C 98 43, 84 43, 80 50 Z" fill="rgba(244,63,94,0.3)" stroke="#f43f5e" stroke-width="1.5" stroke-dasharray="3 3"/>
+      <!-- Romantic Intertwined Tail-Heart with pulsating glow -->
+      <path class="cat-tail-heart-beating" d="M 85 54 C 80 46, 64 46, 64 59 C 64 72, 85 84, 85 84 C 85 84, 106 72, 106 59 C 106 46, 90 46, 85 54 Z" fill="rgba(244,63,94,0.32)" stroke="#f43f5e" stroke-width="1.8" stroke-dasharray="4 3"/>
     </svg>
 </div>
 
