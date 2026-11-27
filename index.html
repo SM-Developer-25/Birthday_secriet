@@ -1436,17 +1436,21 @@
            HYPER-REALISTIC DYNAMIC CAT ROMANCE (SHIYAM & EN CUTE PAAPA)
            Multi-pose, Multi-directional, Life-like Feline Physics & Interactions
            ========================================================================== */
+        /* ==========================================================================
+           HYPER-REALISTIC DYNAMIC CAT ROMANCE COUPLE STYLES
+           Shiyam (Majestic Charcoal Tuxedo) & En Cute Paapa (Silky Snow Angora)
+           ========================================================================== */
         .cat-romance-companion {
             position: fixed;
             z-index: 45;
-            width: 120px;
-            height: 88px;
-            filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 16px rgba(250, 204, 21, 0.4));
+            width: 144px;
+            height: 104px;
+            filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 20px rgba(250, 204, 21, 0.35));
             cursor: pointer;
-            transition: left 0.75s cubic-bezier(0.34, 1.25, 0.64, 1),
-                        right 0.75s cubic-bezier(0.34, 1.25, 0.64, 1),
-                        bottom 0.75s cubic-bezier(0.34, 1.25, 0.64, 1),
-                        top 0.75s cubic-bezier(0.34, 1.25, 0.64, 1),
+            transition: left 0.8s cubic-bezier(0.34, 1.25, 0.64, 1),
+                        right 0.8s cubic-bezier(0.34, 1.25, 0.64, 1),
+                        bottom 0.8s cubic-bezier(0.34, 1.25, 0.64, 1),
+                        top 0.8s cubic-bezier(0.34, 1.25, 0.64, 1),
                         transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
             touch-action: manipulation;
             user-select: none;
@@ -1455,8 +1459,8 @@
 
         @media (min-width: 640px) {
             .cat-romance-companion {
-                width: 148px;
-                height: 108px;
+                width: 178px;
+                height: 128px;
             }
         }
 
@@ -1488,22 +1492,21 @@
         }
 
         .cat-romance-companion.pos-bottom-center {
-            bottom: 12px;
+            bottom: 14px;
             left: 50%;
             right: auto;
             top: auto;
-            margin-left: -60px;
+            transform: translateX(-50%);
         }
         @media (min-width: 640px) {
             .cat-romance-companion.pos-bottom-center {
-                bottom: 18px;
-                margin-left: -74px;
+                bottom: 20px;
             }
         }
 
         .cat-romance-companion.pos-top-right {
-            top: 68px;
-            right: 12px;
+            top: 70px;
+            right: 14px;
             bottom: auto;
             left: auto;
         }
@@ -1518,11 +1521,12 @@
 
         /* Walking Stroll Animation when repositioning */
         .cat-romance-companion.cat-walking {
-            animation: catStrollBounce 0.35s ease-in-out infinite alternate;
+            animation: catStrollBounce 0.38s ease-in-out infinite alternate;
         }
         @keyframes catStrollBounce {
             0% { transform: translateY(0px) rotate(0deg); }
-            100% { transform: translateY(-8px) rotate(2deg); }
+            50% { transform: translateY(-7px) rotate(1.5deg); }
+            100% { transform: translateY(-11px) rotate(-1.5deg); }
         }
 
         .cat-romance-svg {
@@ -1533,245 +1537,327 @@
             transition: transform 0.4s ease;
         }
 
-        /* --- Realistic Organic Feline Breathing --- */
-        .shiyam-body-rig,
-        .paapa-body-rig {
-            animation: catOrganicBreath 2.8s ease-in-out infinite;
-            transform-origin: 85px 95px;
+        /* --- Realistic Organic Feline Breathing & Ground Occlusion --- */
+        .shiyam-body-container {
+            animation: catOrganicBreathingShiyam 3.2s ease-in-out infinite;
+            transform-origin: 66px 100px;
         }
-        .paapa-body-rig {
-            animation-delay: 0.25s;
+        .paapa-body-container {
+            animation: catOrganicBreathingPaapa 3.2s ease-in-out infinite 0.35s;
+            transform-origin: 124px 100px;
         }
 
-        @keyframes catOrganicBreath {
+        @keyframes catOrganicBreathingShiyam {
             0%, 100% { transform: scale(1, 1); }
-            50% { transform: scale(1.025, 1.045); }
+            50% { transform: scale(1.028, 1.042) translateY(-0.8px); }
+        }
+        @keyframes catOrganicBreathingPaapa {
+            0%, 100% { transform: scale(1, 1); }
+            50% { transform: scale(1.028, 1.042) translateY(-0.8px); }
         }
 
         .cat-ground-shadow {
-            animation: catShadowBreath 2.8s ease-in-out infinite;
-            transform-origin: 85px 106px;
+            animation: catShadowPulse 3.2s ease-in-out infinite;
+            transform-origin: 95px 118px;
         }
-        @keyframes catShadowBreath {
+        @keyframes catShadowPulse {
             0%, 100% { transform: scale(1); opacity: 0.32; }
-            50% { transform: scale(1.06); opacity: 0.42; }
+            50% { transform: scale(1.08, 1.05); opacity: 0.45; }
         }
 
-        /* --- Independent Realistic Ear Twitches --- */
-        .boy-ear-left {
-            animation: earTwitchL 4.5s ease-in-out infinite;
+        /* --- Independent Realistic Ear Swivels & Twitches --- */
+        .shiyam-ear-left {
+            animation: shiyamEarFlickL 5.4s ease-in-out infinite;
         }
-        .boy-ear-right {
-            animation: earTwitchR 5.2s ease-in-out infinite 0.7s;
+        .shiyam-ear-right {
+            animation: shiyamEarFlickR 6.1s ease-in-out infinite 1.1s;
         }
-        .girl-ear-left {
-            animation: earTwitchL 4.8s ease-in-out infinite 1.2s;
+        .paapa-ear-left {
+            animation: paapaEarFlickL 4.9s ease-in-out infinite 0.6s;
         }
-        .girl-ear-right {
-            animation: earTwitchR 4.2s ease-in-out infinite 2s;
-        }
-
-        @keyframes earTwitchL {
-            0%, 92%, 100% { transform: rotate(0deg); }
-            94% { transform: rotate(-8deg); }
-            97% { transform: rotate(5deg); }
-        }
-        @keyframes earTwitchR {
-            0%, 90%, 100% { transform: rotate(0deg); }
-            93% { transform: rotate(9deg); }
-            96% { transform: rotate(-6deg); }
+        .paapa-ear-right {
+            animation: paapaEarFlickR 5.7s ease-in-out infinite 1.7s;
         }
 
-        /* --- Whiskers Subtle Tremble --- */
-        .boy-whiskers, .girl-whiskers {
-            animation: whiskersTremble 3.6s ease-in-out infinite;
-            transform-origin: 62px 64px;
+        @keyframes shiyamEarFlickL {
+            0%, 88%, 100% { transform: rotate(0deg); }
+            90% { transform: rotate(-7deg); }
+            93% { transform: rotate(4deg); }
+            96% { transform: rotate(-3deg); }
         }
-        @keyframes whiskersTremble {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.04, 0.98); }
+        @keyframes shiyamEarFlickR {
+            0%, 86%, 100% { transform: rotate(0deg); }
+            89% { transform: rotate(8deg); }
+            92% { transform: rotate(-5deg); }
+            95% { transform: rotate(3deg); }
+        }
+        @keyframes paapaEarFlickL {
+            0%, 87%, 100% { transform: rotate(0deg); }
+            90% { transform: rotate(-8deg); }
+            93% { transform: rotate(5deg); }
+            96% { transform: rotate(-3deg); }
+        }
+        @keyframes paapaEarFlickR {
+            0%, 89%, 100% { transform: rotate(0deg); }
+            91% { transform: rotate(7deg); }
+            94% { transform: rotate(-4deg); }
+            97% { transform: rotate(3deg); }
         }
 
-        /* --- Realistic Fluid Tail Physics --- */
-        .shiyam-tail-rig {
-            animation: shiyamTailWave 3.2s ease-in-out infinite;
-            transform-origin: 40px 98px;
+        /* --- Fluid Sinusoidal S-Curve Tail Physics --- */
+        .shiyam-tail-container {
+            animation: shiyamTailFluidSway 4.2s ease-in-out infinite alternate;
         }
-        @keyframes shiyamTailWave {
+        @keyframes shiyamTailFluidSway {
+            0% { transform: rotate(0deg) skewX(0deg); }
+            35% { transform: rotate(-7deg) skewX(-2deg); }
+            70% { transform: rotate(4deg) skewX(2.5deg); }
+            100% { transform: rotate(-9deg) skewX(-3deg); }
+        }
+
+        .paapa-tail-container {
+            animation: paapaTailFluidSway 3.8s ease-in-out infinite alternate 0.5s;
+        }
+        @keyframes paapaTailFluidSway {
+            0% { transform: rotate(0deg) skewX(0deg); }
+            30% { transform: rotate(8deg) skewX(2.5deg); }
+            65% { transform: rotate(-5deg) skewX(-2deg); }
+            100% { transform: rotate(10deg) skewX(3.5deg); }
+        }
+
+        /* --- Whisker Micro-Spring Response --- */
+        .shiyam-whiskers {
+            animation: whiskerMicroSpring 3.5s ease-in-out infinite alternate;
+            transform-origin: 70px 73px;
+        }
+        .paapa-whiskers {
+            animation: whiskerMicroSpring 3.5s ease-in-out infinite alternate 0.4s;
+            transform-origin: 120px 73px;
+        }
+        @keyframes whiskerMicroSpring {
             0%, 100% { transform: rotate(0deg); }
-            50% { transform: rotate(-7deg); }
+            50% { transform: rotate(1.4deg) scaleY(1.03); }
         }
 
-        .paapa-tail-rig {
-            animation: paapaTailWave 3.2s ease-in-out infinite 0.3s;
-            transform-origin: 124px 98px;
+        /* --- Biological Slow-Blink & Gem Eye States --- */
+        .eyelid-blink {
+            opacity: 0;
+            transform-origin: center top;
+            transition: opacity 0.2s ease;
         }
-        @keyframes paapaTailWave {
-            0%, 100% { transform: rotate(0deg); }
-            50% { transform: rotate(7deg); }
-        }
-
-        /* --- Natural Blinking Eyes Engine --- */
-        .cat-eyes-group .cat-eye-open {
-            animation: catEyeBlink 4.2s ease-in-out infinite;
-            transform-origin: center;
-        }
-        .girl-eyes .cat-eye-open {
-            animation-delay: 0.15s;
+        .eye-happy-slit {
+            display: none;
         }
 
-        @keyframes catEyeBlink {
-            0%, 94%, 98%, 100% { transform: scaleY(1); opacity: 1; }
-            96% { transform: scaleY(0.08); opacity: 0.85; }
+        /* Slow loving blink cycle every 4.8s */
+        .cat-romance-companion:not(.pose-nuzzle):not(.pose-groom):not(.pose-cuddle-sleep):not(.kissing) .eyelid-blink {
+            animation: felineOrganicSlowBlink 4.8s ease-in-out infinite;
+        }
+        @keyframes felineOrganicSlowBlink {
+            0%, 84%, 100% { opacity: 0; transform: scaleY(0); }
+            87% { opacity: 1; transform: scaleY(1); }
+            91% { opacity: 1; transform: scaleY(1); } /* hold in loving squint */
+            94% { opacity: 0; transform: scaleY(0); }
         }
 
-        /* Default Eye Visibility */
-        .cat-eye-open { display: block; }
-        .cat-eye-happy { display: none; }
-        .cat-tongue-lick { display: none; opacity: 0; }
-        .cat-kiss-burst { opacity: 0; transform: scale(0); transition: all 0.25s ease; }
-
-        /* ========================================================
-           DYNAMIC ROMANCE POSES (STATE MACHINE)
-           ======================================================== */
-
-        /* 1. POSE: NUZZLE & CHEEK BUNTING */
-        .cat-romance-companion.pose-nuzzle .shiyam-head-rig {
-            transform: rotate(10deg) translate(2.5px, 1px);
-            transition: transform 0.6s ease;
+        /* --- Grooming Tongue Default Hidden --- */
+        .cat-groom-tongue {
+            display: none;
+            opacity: 0;
+            transform-origin: 70px 72px;
         }
-        .cat-romance-companion.pose-nuzzle .paapa-head-rig {
-            transform: rotate(-11deg) translate(-2.5px, 1px);
-            transition: transform 0.6s ease;
-        }
-        .cat-romance-companion.pose-nuzzle .cat-eye-open { display: none; }
-        .cat-romance-companion.pose-nuzzle .cat-eye-happy { display: block; }
 
-        /* 2. POSE: GENTLE LICKING / GROOMING */
-        .cat-romance-companion.pose-groom .shiyam-head-rig {
-            transform: rotate(14deg) translate(4px, 2px);
+        /* --- Tail-Heart Default Hidden --- */
+        .cat-tail-heart-beating {
+            display: none;
+            opacity: 0;
+            transform-origin: 95px 75px;
+        }
+
+        /* --- Floating Romance Sparkles --- */
+        .cat-sparkle-heart {
+            animation: sparkleHeartAscend 3s ease-in-out infinite;
+        }
+        .s-heart-1 { animation-delay: 0s; }
+        .s-heart-2 { animation-delay: 1.1s; }
+        .s-heart-3 { animation-delay: 2.2s; }
+
+        @keyframes sparkleHeartAscend {
+            0% { transform: translateY(0px) scale(0.7); opacity: 0; }
+            30% { opacity: 0.95; }
+            70% { transform: translateY(-16px) scale(1.15) rotate(5deg); opacity: 0.85; }
+            100% { transform: translateY(-28px) scale(0.6) rotate(-5deg); opacity: 0; }
+        }
+
+        .cat-kiss-sparkle-burst {
+            display: none;
+            transform-origin: 95px 65px;
+        }
+
+        /* ==========================================================================
+           5 DISTINCT REALISTIC ROMANTIC POSES
+           ========================================================================== */
+
+        /* 1. POSE: NUZZLE & HEAD-BUNT (Loving Cheek-to-Cheek Affection) */
+        .cat-romance-companion.pose-nuzzle .shiyam-head-container {
+            transform: rotate(11deg) translate(3.5px, 1.5px);
+            transition: transform 0.65s cubic-bezier(0.34, 1.25, 0.64, 1);
+        }
+        .cat-romance-companion.pose-nuzzle .paapa-head-container {
+            transform: rotate(-12deg) translate(-3.5px, 1.5px);
+            transition: transform 0.65s cubic-bezier(0.34, 1.25, 0.64, 1);
+        }
+        .cat-romance-companion.pose-nuzzle .eye-open-state { display: none; }
+        .cat-romance-companion.pose-nuzzle .eye-happy-slit { display: block; }
+        .cat-romance-companion.pose-nuzzle .eyelid-blink { display: none; }
+        .cat-romance-companion.pose-nuzzle .shiyam-knead-paw {
+            animation: pawKneadGentle 2s ease-in-out infinite;
+        }
+        @keyframes pawKneadGentle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-2.5px) scale(1.04); }
+        }
+
+        /* 2. POSE: GENTLE GROOMING / LICKING */
+        .cat-romance-companion.pose-groom .shiyam-head-container {
+            transform: rotate(15deg) translate(5px, 2px);
             transition: transform 0.5s ease;
         }
-        .cat-romance-companion.pose-groom .paapa-head-rig {
-            transform: rotate(-14deg) translate(-2px, 2px);
+        .cat-romance-companion.pose-groom .paapa-head-container {
+            transform: rotate(-14deg) translate(-2.5px, 2px);
             transition: transform 0.5s ease;
         }
-        .cat-romance-companion.pose-groom .cat-tongue-lick {
+        .cat-romance-companion.pose-groom .cat-groom-tongue {
             display: block;
             opacity: 1;
-            animation: tongueLick 0.5s ease-in-out infinite alternate;
+            animation: realisticTongueLick 0.55s ease-in-out infinite alternate;
         }
-        @keyframes tongueLick {
-            0% { transform: translate(0, 0) scale(0.9); }
-            100% { transform: translate(2px, 1px) scale(1.1); }
+        @keyframes realisticTongueLick {
+            0% { transform: translate(0, 0) scale(0.9) rotate(0deg); }
+            100% { transform: translate(3.5px, 1.5px) scale(1.15) rotate(4deg); }
         }
-        .cat-romance-companion.pose-groom .cat-eye-open { display: none; }
-        .cat-romance-companion.pose-groom .cat-eye-happy { display: block; }
+        .cat-romance-companion.pose-groom .eye-open-state { display: none; }
+        .cat-romance-companion.pose-groom .eye-happy-slit { display: block; }
+        .cat-romance-companion.pose-groom .eyelid-blink { display: none; }
 
-        /* 3. POSE: TAIL-HEART SYNCHRONIZED */
+        /* 3. POSE: SYNCHRONIZED TAIL-HEART WITH BEATING GLOW */
         .cat-romance-companion.pose-tail-heart .cat-tail-heart-beating {
-            animation: tailHeartGlowPulse 1.6s ease-in-out infinite;
+            display: block;
+            opacity: 1;
+            animation: tailHeartBeatGlow 1.8s ease-in-out infinite;
         }
-        .cat-romance-companion.pose-tail-heart .shiyam-tail-rig {
-            animation: shiyamTailHeartHold 2s ease-in-out infinite alternate;
+        @keyframes tailHeartBeatGlow {
+            0%, 100% { transform: scale(1); opacity: 0.75; }
+            50% { transform: scale(1.08); opacity: 1; filter: drop-shadow(0 0 8px rgba(244,63,94,0.9)); }
         }
-        .cat-romance-companion.pose-tail-heart .paapa-tail-rig {
-            animation: paapaTailHeartHold 2s ease-in-out infinite alternate;
+        .cat-romance-companion.pose-tail-heart .shiyam-tail-container {
+            animation: shiyamTailHeartHold 2.4s ease-in-out infinite alternate;
+        }
+        .cat-romance-companion.pose-tail-heart .paapa-tail-container {
+            animation: paapaTailHeartHold 2.4s ease-in-out infinite alternate;
         }
         @keyframes shiyamTailHeartHold {
-            0% { transform: rotate(-3deg); }
-            100% { transform: rotate(1deg); }
+            0% { transform: rotate(-5deg) translateY(-2px); }
+            100% { transform: rotate(2deg) translateY(0px); }
         }
         @keyframes paapaTailHeartHold {
-            0% { transform: rotate(3deg); }
-            100% { transform: rotate(-1deg); }
+            0% { transform: rotate(5deg) translateY(-2px); }
+            100% { transform: rotate(-2deg) translateY(0px); }
         }
 
-        /* 4. POSE: DEEP ROMANTIC SLOW BLINK */
-        .cat-romance-companion.pose-slow-blink .shiyam-head-rig {
+        /* 4. POSE: DEEP GEM-EYE GAZE & SLOW BLINK */
+        .cat-romance-companion.pose-slow-blink .shiyam-head-container {
             transform: rotate(6deg);
+            transition: transform 0.6s ease;
         }
-        .cat-romance-companion.pose-slow-blink .paapa-head-rig {
+        .cat-romance-companion.pose-slow-blink .paapa-head-container {
             transform: rotate(-6deg);
+            transition: transform 0.6s ease;
         }
-        .cat-romance-companion.pose-slow-blink .cat-eye-open {
-            animation: catSlowBlink 3.2s ease-in-out infinite;
+        .cat-romance-companion.pose-slow-blink .eye-iris {
+            filter: drop-shadow(0 0 4px rgba(250, 204, 21, 0.6));
         }
-        @keyframes catSlowBlink {
-            0%, 20%, 80%, 100% { transform: scaleY(1); }
-            45%, 65% { transform: scaleY(0.12); }
-        }
-
-        /* 5. POSE: CUDDLE & NAP */
-        .cat-romance-companion.pose-cuddle-sleep .shiyam-head-rig {
-            transform: rotate(8deg) translateY(4px);
-        }
-        .cat-romance-companion.pose-cuddle-sleep .paapa-head-rig {
-            transform: rotate(-9deg) translateY(4px);
-        }
-        .cat-romance-companion.pose-cuddle-sleep .cat-eye-open { display: none; }
-        .cat-romance-companion.pose-cuddle-sleep .cat-eye-happy { display: block; }
-        .cat-romance-companion.pose-cuddle-sleep .shiyam-body-rig,
-        .cat-romance-companion.pose-cuddle-sleep .paapa-body-rig {
-            animation-duration: 3.8s;
+        .cat-romance-companion.pose-slow-blink .eye-left-paapa .eye-iris,
+        .cat-romance-companion.pose-slow-blink .eye-right-paapa .eye-iris {
+            filter: drop-shadow(0 0 4px rgba(56, 189, 248, 0.6));
         }
 
-        /* 6. INSTANT KISS ACTION (ON TAP / CLICK) */
-        .cat-romance-companion.kissing .shiyam-head-rig {
-            transform: rotate(16deg) translate(6px, 2px) !important;
-            transition: transform 0.18s ease;
+        /* 5. POSE: CUDDLE & PEACEFUL SLEEP WITH BISCUITS */
+        .cat-romance-companion.pose-cuddle-sleep .shiyam-body-container {
+            transform: translate(3px, 1px) scale(0.99, 0.98);
+            transition: transform 0.8s ease;
         }
-        .cat-romance-companion.kissing .paapa-head-rig {
-            transform: rotate(-17deg) translate(-6px, 2px) !important;
-            transition: transform 0.18s ease;
+        .cat-romance-companion.pose-cuddle-sleep .paapa-body-container {
+            transform: translate(-3px, 1px) scale(0.99, 0.98);
+            transition: transform 0.8s ease;
         }
-        .cat-romance-companion.kissing .cat-kiss-burst {
-            opacity: 1 !important;
-            transform: scale(1.4) !important;
+        .cat-romance-companion.pose-cuddle-sleep .shiyam-head-container {
+            transform: rotate(13deg) translate(4px, 4px);
+            transition: transform 0.8s ease;
         }
-        .cat-romance-companion.kissing .cat-eye-open { display: none !important; }
-        .cat-romance-companion.kissing .cat-eye-happy { display: block !important; }
-
-        /* Floating Romance Hearts */
-        .cat-floating-heart {
-            transform-origin: center;
-            animation: catHeartRise 2.4s ease-in-out infinite;
-            opacity: 0;
+        .cat-romance-companion.pose-cuddle-sleep .paapa-head-container {
+            transform: rotate(-13deg) translate(-4px, 4px);
+            transition: transform 0.8s ease;
         }
-        .cat-floating-heart.heart-1 { animation-delay: 0s; }
-        .cat-floating-heart.heart-2 { animation-delay: 0.8s; }
-        .cat-floating-heart.heart-3 { animation-delay: 1.6s; }
-
-        @keyframes catHeartRise {
-            0% { transform: translateY(10px) scale(0.4); opacity: 0; }
-            30% { opacity: 1; transform: translateY(0px) scale(1); }
-            70% { opacity: 0.9; transform: translateY(-16px) scale(1.15) rotate(8deg); }
-            100% { opacity: 0; transform: translateY(-30px) scale(0.6) rotate(-10deg); }
+        .cat-romance-companion.pose-cuddle-sleep .eye-open-state { display: none; }
+        .cat-romance-companion.pose-cuddle-sleep .eye-happy-slit { display: block; }
+        .cat-romance-companion.pose-cuddle-sleep .eyelid-blink { display: none; }
+        .cat-romance-companion.pose-cuddle-sleep .shiyam-knead-paw {
+            animation: pawKneadBiscuits 2.2s ease-in-out infinite;
+        }
+        @keyframes pawKneadBiscuits {
+            0%, 100% { transform: translateY(0); }
+            45% { transform: translateY(-3.5px) scale(1.06); }
+            65% { transform: translateY(-1px) scale(1.02); }
         }
 
-        @keyframes tailHeartGlowPulse {
-            0%, 100% { transform: scale(0.92); opacity: 0.45; }
-            50% { transform: scale(1.14); opacity: 0.95; }
+        /* --- INTENSE KISSING ANIMATION (On Tap/Click) --- */
+        .cat-romance-companion.kissing .shiyam-head-container {
+            transform: rotate(18deg) translate(8px, 3px) scale(1.03);
+            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .cat-romance-companion.kissing .paapa-head-container {
+            transform: rotate(-18deg) translate(-8px, 3px) scale(1.03);
+            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .cat-romance-companion.kissing .eye-open-state { display: none; }
+        .cat-romance-companion.kissing .eye-happy-slit { display: block; }
+        .cat-romance-companion.kissing .eyelid-blink { display: none; }
+        .cat-romance-companion.kissing .cat-kiss-sparkle-burst {
+            display: block;
+            animation: kissBurstExplosion 0.65s ease-out forwards;
+        }
+        @keyframes kissBurstExplosion {
+            0% { transform: scale(0.3) rotate(0deg); opacity: 1; }
+            50% { transform: scale(1.35) rotate(45deg); opacity: 1; }
+            100% { transform: scale(1.6) rotate(90deg); opacity: 0; }
+        }
+        .cat-romance-companion.kissing .cat-blush {
+            opacity: 1;
+            transform: scale(1.25);
+            transition: all 0.25s ease;
         }
 
-        /* Speech Bubble */
+        /* Speech Bubble: Deluxe Glassmorphic with Golden Border */
         .cat-speech-bubble {
             position: absolute;
-            top: -24px;
+            top: -34px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(10, 22, 48, 0.95);
-            border: 1px solid rgba(250, 204, 21, 0.7);
-            border-radius: 12px;
-            padding: 2px 8px;
-            white-space: nowrap;
-            font-size: 9.5px;
+            background: rgba(15, 23, 42, 0.92);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1.5px solid rgba(250, 204, 21, 0.85);
+            color: #fef08a;
+            font-size: 11px;
             font-weight: 700;
-            color: #fde047;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6), 0 0 10px rgba(56, 189, 248, 0.35);
+            padding: 4px 10px;
+            border-radius: 14px;
+            white-space: nowrap;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.65), 0 0 12px rgba(250, 204, 21, 0.4);
             pointer-events: none;
-            opacity: 0.95;
-            transition: opacity 0.3s ease, transform 0.3s ease;
+            animation: speechBubbleFloat 2.8s ease-in-out infinite;
+            font-family: inherit;
         }
         .cat-speech-bubble::after {
             content: '';
@@ -1779,11 +1865,16 @@
             bottom: -5px;
             left: 50%;
             transform: translateX(-50%);
-            border-width: 5px 5px 0 5px;
+            border-width: 5px 5px 0;
             border-style: solid;
-            border-color: rgba(10, 22, 48, 0.95) transparent transparent transparent;
+            border-color: rgba(250, 204, 21, 0.85) transparent transparent;
+            display: block;
+            width: 0;
         }
-
+        @keyframes speechBubbleFloat {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-4px); }
+        }
     </style>
 </head>
 <body class="bg-romantic-dark select-none overflow-hidden">
@@ -7251,36 +7342,55 @@
                 if (audioCtx.state === 'suspended') audioCtx.resume();
 
                 const now = audioCtx.currentTime;
-                // Low-frequency modulated purr
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                const lfo = audioCtx.createOscillator();
-                const lfoGain = audioCtx.createGain();
 
-                osc.type = 'sawtooth';
-                osc.frequency.setValueAtTime(28, now); // Cat purr base ~28Hz
+                // 1. Genuine Deep Feline Resonance Purr (28Hz pulse + 56Hz harmonic with 25Hz tremolo)
+                const purrOsc = audioCtx.createOscillator();
+                const purrGain = audioCtx.createGain();
+                const purrLfo = audioCtx.createOscillator();
+                const purrLfoGain = audioCtx.createGain();
 
-                lfo.frequency.setValueAtTime(25, now);
-                lfoGain.gain.setValueAtTime(15, now);
-                lfo.connect(osc.frequency);
+                purrOsc.type = 'sawtooth';
+                purrOsc.frequency.setValueAtTime(28, now);
 
-                gain.gain.setValueAtTime(0.001, now);
-                gain.gain.linearRampToValueAtTime(0.04, now + 0.1);
-                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.9);
+                purrLfo.frequency.setValueAtTime(24, now);
+                purrLfoGain.gain.setValueAtTime(14, now);
+                purrLfo.connect(purrOsc.frequency);
 
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
+                purrGain.gain.setValueAtTime(0.001, now);
+                purrGain.gain.linearRampToValueAtTime(0.045, now + 0.12);
+                purrGain.gain.exponentialRampToValueAtTime(0.001, now + 1.1);
 
-                lfo.start(now);
-                osc.start(now);
-                lfo.stop(now + 0.9);
-                osc.stop(now + 0.9);
+                purrOsc.connect(purrGain);
+                purrGain.connect(audioCtx.destination);
 
-                // Cute high chirpy meow accent
-                playPopSound(760);
-                setTimeout(() => playPopSound(920), 110);
+                purrLfo.start(now);
+                purrOsc.start(now);
+                purrLfo.stop(now + 1.1);
+                purrOsc.stop(now + 1.1);
+
+                // 2. Sweet Feline Affection Chirp / "Mrrp" Trill (540Hz -> 680Hz -> 590Hz)
+                const trillOsc = audioCtx.createOscillator();
+                const trillGain = audioCtx.createGain();
+                trillOsc.type = 'sine';
+                trillOsc.frequency.setValueAtTime(540, now + 0.05);
+                trillOsc.frequency.exponentialRampToValueAtTime(690, now + 0.18);
+                trillOsc.frequency.exponentialRampToValueAtTime(580, now + 0.32);
+
+                trillGain.gain.setValueAtTime(0.001, now + 0.05);
+                trillGain.gain.linearRampToValueAtTime(0.06, now + 0.14);
+                trillGain.gain.exponentialRampToValueAtTime(0.001, now + 0.38);
+
+                trillOsc.connect(trillGain);
+                trillGain.connect(audioCtx.destination);
+
+                trillOsc.start(now + 0.05);
+                trillOsc.stop(now + 0.38);
+
+                // Starlight sparkle chime
+                playPopSound(880);
+                setTimeout(() => playPopSound(1040), 120);
             } catch(e) {
-                playPopSound(780);
+                playPopSound(820);
             }
         }
 
@@ -7389,197 +7499,376 @@
 
 <div id="globalCatRomanceWidget" class="cat-romance-companion pos-bottom-left dir-right pose-nuzzle" onclick="handleCatRomanceClick(event)" title="Shiyam & En Cute Paapa ❤️ Tap to kiss or change position!">
     <div id="catSpeechBubble" class="cat-speech-bubble">Shiyam ❤️ Paapa</div>
+    <svg class="cat-romance-svg" viewBox="0 0 190 135" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Shading & Lighting Gradients for 3D Volume -->
+    <radialGradient id="shiyamBodyGrad" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="45%" stop-color="#1e293b"/>
+      <stop offset="85%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </radialGradient>
+    <radialGradient id="shiyamHeadGrad" cx="40%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#3b4d66"/>
+      <stop offset="50%" stop-color="#1e293b"/>
+      <stop offset="90%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#050a14"/>
+    </radialGradient>
+    <radialGradient id="shiyamChestGrad" cx="50%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="70%" stop-color="#f1f5f9"/>
+      <stop offset="100%" stop-color="#cbd5e1"/>
+    </radialGradient>
+
+    <!-- Paapa (Snow White Angora) Gradients with warm pearlescent tones -->
+    <radialGradient id="paapaBodyGrad" cx="40%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="60%" stop-color="#fdf4f5"/>
+      <stop offset="85%" stop-color="#f8e7eb"/>
+      <stop offset="100%" stop-color="#ebd1d8"/>
+    </radialGradient>
+    <radialGradient id="paapaHeadGrad" cx="42%" cy="32%" r="65%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="65%" stop-color="#fff1f3"/>
+      <stop offset="90%" stop-color="#f9dbe1"/>
+      <stop offset="100%" stop-color="#f2c8d2"/>
+    </radialGradient>
+    <radialGradient id="paapaBellyGrad" cx="50%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="75%" stop-color="#ffe4e8"/>
+      <stop offset="100%" stop-color="#fecdd3"/>
+    </radialGradient>
+
+    <!-- Hyper-Realistic Gem Eyes: Shiyam Amber Gold -->
+    <radialGradient id="shiyamIrisGrad" cx="45%" cy="40%" r="58%">
+      <stop offset="0%" stop-color="#fef9c3"/>
+      <stop offset="35%" stop-color="#facc15"/>
+      <stop offset="70%" stop-color="#eab308"/>
+      <stop offset="90%" stop-color="#ca8a04"/>
+      <stop offset="100%" stop-color="#713f12"/>
+    </radialGradient>
+
+    <!-- Hyper-Realistic Gem Eyes: Paapa Sapphire Aqua -->
+    <radialGradient id="paapaIrisGrad" cx="45%" cy="40%" r="58%">
+      <stop offset="0%" stop-color="#ecfeff"/>
+      <stop offset="30%" stop-color="#67e8f9"/>
+      <stop offset="65%" stop-color="#06b6d4"/>
+      <stop offset="88%" stop-color="#0891b2"/>
+      <stop offset="100%" stop-color="#164e63"/>
+    </radialGradient>
+
+    <!-- Soft Ear Peach Interior -->
+    <linearGradient id="earInteriorGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fda4af"/>
+      <stop offset="60%" stop-color="#f472b6"/>
+      <stop offset="100%" stop-color="#db2777"/>
+    </linearGradient>
+
+    <!-- Bell Gold Gradient -->
+    <radialGradient id="goldBellGrad" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="50%" stop-color="#facc15"/>
+      <stop offset="85%" stop-color="#ca8a04"/>
+      <stop offset="100%" stop-color="#854d0e"/>
+    </radialGradient>
+
+    <!-- Heart Glow Filter -->
+    <filter id="catGlowFilter" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Ground Ambient Contact Shadow with Realistic Breathing Occlusion -->
+  <g class="cat-shadow-group">
+    <ellipse class="cat-ground-shadow shadow-shiyam" cx="66" cy="118" rx="28" ry="7" fill="rgba(2,6,23,0.38)" />
+    <ellipse class="cat-ground-shadow shadow-paapa" cx="124" cy="118" rx="28" ry="7" fill="rgba(2,6,23,0.32)" />
+    <ellipse class="cat-ground-shadow shadow-center" cx="95" cy="119" rx="18" ry="5.5" fill="rgba(2,6,23,0.45)" />
+  </g>
+
+  <!-- Bioluminescent Romance Sparkles & Floating Hearts -->
+  <g class="cat-romance-sparkles">
+    <path class="cat-sparkle-heart s-heart-1" d="M95 44 C92 37, 82 35, 82 43 C82 52, 95 60, 95 60 C95 60, 108 52, 108 43 C108 35, 98 37, 95 44 Z" fill="#f43f5e" filter="url(#catGlowFilter)"/>
+    <path class="cat-sparkle-heart s-heart-2" d="M102 30 C100 25, 92 23, 92 29 C92 36, 102 43, 102 43 C102 43, 112 36, 112 29 C112 23, 104 25, 102 30 Z" fill="#facc15" filter="url(#catGlowFilter)"/>
+    <path class="cat-sparkle-heart s-heart-3" d="M88 20 C86 16, 80 15, 80 20 C80 25, 88 30, 88 30 C88 30, 96 25, 96 20 C96 15, 90 16, 88 20 Z" fill="#38bdf8" filter="url(#catGlowFilter)"/>
     
-    <svg class="cat-romance-svg" viewBox="0 0 170 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <radialGradient id="catEyeGold" cx="40%" cy="40%" r="60%">
-          <stop offset="0%" stop-color="#fef08a"/>
-          <stop offset="60%" stop-color="#eab308"/>
-          <stop offset="100%" stop-color="#854d0e"/>
-        </radialGradient>
-        <radialGradient id="catEyeAqua" cx="40%" cy="40%" r="60%">
-          <stop offset="0%" stop-color="#a5f3fc"/>
-          <stop offset="60%" stop-color="#06b6d4"/>
-          <stop offset="100%" stop-color="#0e7490"/>
-        </radialGradient>
-      </defs>
+    <!-- Kiss Magic Star Burst -->
+    <g class="cat-kiss-sparkle-burst">
+      <circle cx="95" cy="65" r="3.5" fill="#fde047" filter="url(#catGlowFilter)" />
+      <path d="M 95 53 L 95 77 M 83 65 L 107 65" stroke="#facc15" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M 87 57 L 103 73 M 87 73 L 103 57" stroke="#38bdf8" stroke-width="1.4" stroke-linecap="round"/>
+    </g>
+  </g>
 
-      <!-- Soft Ground Contact Shadow with breathing scale -->
-      <ellipse class="cat-ground-shadow" cx="85" cy="106" rx="60" ry="8" fill="rgba(0,0,0,0.32)" />
+  <!-- =========================================================================
+       1. SHIYAM (MAJESTIC CHARCOAL TUXEDO BOY CAT)
+       ========================================================================= -->
+  <g class="cat-individual-wrap cat-shiyam-wrap">
+    <!-- Fluid Multi-Joint Tail -->
+    <g class="cat-tail-container shiyam-tail-container" transform-origin="48 108">
+      <path class="cat-tail-wave-path shiyam-tail-path" d="M 48 108 C 26 112, 12 94, 18 74 C 23 56, 40 60, 48 76 C 54 88, 52 98, 46 108" stroke="url(#shiyamBodyGrad)" stroke-width="9" stroke-linecap="round" fill="none"/>
+      <!-- Soft White Tail Tip -->
+      <path class="shiyam-tail-tip" d="M 18 74 C 20 67, 26 62, 33 63" stroke="#f8fafc" stroke-width="9" stroke-linecap="round" fill="none"/>
+    </g>
 
-      <!-- Floating Dynamic Romance Hearts -->
-      <g class="cat-heart-fountain">
-        <path class="cat-floating-heart heart-1" d="M85 36 C82 30, 72 28, 72 36 C72 44, 85 52, 85 52 C85 52, 98 44, 98 36 C98 28, 88 30, 85 36 Z" fill="#f43f5e"/>
-        <path class="cat-floating-heart heart-2" d="M90 24 C88 20, 80 18, 80 24 C80 30, 90 36, 90 36 C90 36, 100 30, 100 24 C100 18, 92 20, 90 24 Z" fill="#facc15"/>
-        <path class="cat-floating-heart heart-3" d="M78 14 C76 10, 70 9, 70 14 C70 19, 78 24, 78 24 C78 24, 86 19, 86 14 C86 9, 80 10, 78 14 Z" fill="#38bdf8"/>
-        <!-- Kiss Sparkle Burst -->
-        <g class="cat-kiss-burst">
-          <circle cx="85" cy="58" r="3" fill="#fde047" />
-          <path d="M 85 48 L 85 68 M 75 58 L 95 58" stroke="#fde047" stroke-width="1.5" stroke-linecap="round"/>
-          <path d="M 78 51 L 92 65 M 78 65 L 92 51" stroke="#38bdf8" stroke-width="1.2" stroke-linecap="round"/>
+    <!-- Torso & Realistic Feline Muscle Contours with Breathing -->
+    <g class="cat-body-container shiyam-body-container" transform-origin="66 100">
+      <!-- Haunch / Hind leg curve -->
+      <path d="M 44 94 C 40 102, 42 114, 52 116 C 58 116, 62 112, 60 104 C 58 96, 52 92, 44 94 Z" fill="#141c2c"/>
+      
+      <!-- Main Torso Arch -->
+      <path d="M 48 96 C 45 76, 56 64, 72 68 C 84 72, 88 88, 86 106 C 84 114, 76 117, 66 116 C 54 115, 49 108, 48 96 Z" fill="url(#shiyamBodyGrad)"/>
+      
+      <!-- Fluffy Layered White Chest Bib with fur feathering -->
+      <path d="M 68 73 C 78 76, 84 74, 82 86 C 80 98, 72 108, 65 106 C 60 105, 62 94, 64 86 C 65 79, 64 74, 68 73 Z" fill="url(#shiyamChestGrad)"/>
+      <path d="M 72 80 C 76 83, 79 88, 77 94 C 75 99, 71 102, 68 98 C 67 92, 70 85, 72 80 Z" fill="#ffffff" opacity="0.85"/>
+
+      <!-- Paws: Realistic Paws with Separate Rounded Digits -->
+      <!-- Back Paw -->
+      <g class="paw-back-left">
+        <ellipse cx="49" cy="115" rx="7" ry="4.5" fill="#1e293b"/>
+        <path d="M 45 116 C 45 114, 47 113, 49 113 M 49 113 C 51 113, 53 114, 53 116" stroke="#0f172a" stroke-width="0.8" fill="none"/>
+      </g>
+      <!-- Front Left Paw (White Sock) -->
+      <g class="paw-front-left">
+        <ellipse cx="64" cy="116" rx="7.5" ry="5" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.6"/>
+        <path d="M 59 117 C 60 114, 63 113, 65 113 M 65 113 C 67 113, 70 114, 71 117" stroke="#cbd5e1" stroke-width="0.9" fill="none"/>
+      </g>
+      <!-- Front Right Paw (Interactive Kneading / Biscuit-Making Paw) -->
+      <g class="paw-front-right shiyam-knead-paw" transform-origin="78 112">
+        <ellipse cx="78" cy="115" rx="7.5" ry="5" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.6"/>
+        <path d="M 73 116 C 74 113, 77 112, 79 112 M 79 112 C 81 112, 84 113, 85 116" stroke="#cbd5e1" stroke-width="0.9" fill="none"/>
+        <!-- Cute Pink Paw Beans (Toe Pads) faintly visible -->
+        <ellipse cx="78" cy="115" rx="3.5" ry="2.2" fill="#fda4af" opacity="0.45"/>
+      </g>
+    </g>
+
+    <!-- Volumetric Head with Realistic Feline Facial Anatomy -->
+    <g class="cat-head-container shiyam-head-container" transform-origin="68 64">
+      <!-- Left Ear (Independent Swivel & Twitch) -->
+      <g class="cat-ear-rig shiyam-ear-left" transform-origin="52 38">
+        <!-- Ear Outer Silhouette with Henry's Pocket Notch -->
+        <path d="M 48 50 C 44 42, 45 23, 52 18 C 58 24, 66 36, 68 44 C 62 48, 54 50, 48 50 Z" fill="url(#shiyamHeadGrad)"/>
+        <!-- Soft Peach-Pink Ear Interior -->
+        <path d="M 50 46 C 48 38, 49 26, 53 23 C 57 28, 63 36, 64 43 C 59 45, 54 46, 50 46 Z" fill="url(#earInteriorGrad)" opacity="0.75"/>
+        <!-- Ear Fluff Tuft sticking out -->
+        <path d="M 51 44 C 54 38, 58 40, 60 45 M 54 42 C 57 37, 61 39, 62 44" stroke="#ffffff" stroke-width="1.2" stroke-linecap="round"/>
+      </g>
+
+      <!-- Right Ear (Independent Swivel & Twitch) -->
+      <g class="cat-ear-rig shiyam-ear-right" transform-origin="80 38">
+        <path d="M 72 43 C 74 34, 82 22, 88 17 C 94 23, 95 42, 91 50 C 85 49, 78 47, 72 43 Z" fill="url(#shiyamHeadGrad)"/>
+        <path d="M 75 42 C 77 34, 83 25, 87 22 C 91 26, 92 38, 89 46 C 84 45, 79 44, 75 42 Z" fill="url(#earInteriorGrad)" opacity="0.75"/>
+        <path d="M 77 44 C 80 39, 84 41, 87 45 M 80 42 C 83 37, 87 39, 88 44" stroke="#ffffff" stroke-width="1.2" stroke-linecap="round"/>
+      </g>
+
+      <!-- Cranium & Cheek Fur Ruff (Fluffy Cheeks) -->
+      <path d="M 50 56 C 44 60, 44 70, 50 75 C 55 79, 60 81, 70 81 C 80 81, 85 79, 90 75 C 96 70, 96 60, 90 56 C 85 50, 78 48, 70 48 C 62 48, 55 50, 50 56 Z" fill="url(#shiyamHeadGrad)"/>
+
+      <!-- Fluffy White Muzzle Mask & Cheeks -->
+      <path d="M 58 66 C 53 68, 52 74, 57 77 C 62 79, 66 77, 70 73 C 74 77, 78 79, 83 77 C 88 74, 87 68, 82 66 C 77 64, 63 64, 58 66 Z" fill="url(#shiyamChestGrad)"/>
+
+      <!-- Soft Rose Blush on Cheeks -->
+      <ellipse class="cat-blush" cx="54" cy="72" rx="5" ry="3.2" fill="#fb7185" opacity="0.72"/>
+      <ellipse class="cat-blush" cx="86" cy="72" rx="5" ry="3.2" fill="#fb7185" opacity="0.72"/>
+
+      <!-- ================= HYPER-REALISTIC EYES: SHIYAM ================= -->
+      <g class="feline-eyes-group shiyam-eyes-group">
+        <!-- LEFT EYE: Almond Shaped Contour -->
+        <g class="eye-left-shiyam">
+          <path class="eye-sclera" d="M 54 62 C 55 56, 61 54, 65 58 C 66 61, 64 66, 60 67 C 56 67, 54 65, 54 62 Z" fill="#0f172a"/>
+          <ellipse class="eye-iris eye-open-state" cx="60" cy="61.5" rx="5.2" ry="5.8" fill="url(#shiyamIrisGrad)"/>
+          <ellipse class="eye-iris-ring eye-open-state" cx="60" cy="61.5" rx="4.2" ry="4.8" stroke="#ca8a04" stroke-width="0.7" fill="none" opacity="0.65"/>
+          <ellipse class="eye-pupil eye-open-state" cx="60" cy="61.5" rx="2.1" ry="5" fill="#020617"/>
+          <path class="eye-gloss-arc eye-open-state" d="M 58 58 C 59 57, 61 57, 62 58" stroke="#ffffff" stroke-width="1" stroke-linecap="round" opacity="0.85"/>
+          <circle class="eye-gloss-dot eye-open-state" cx="58.5" cy="59.5" r="1.3" fill="#ffffff"/>
+          <circle class="eye-gloss-dot-sub eye-open-state" cx="61.5" cy="63.5" r="0.7" fill="#ffffff" opacity="0.9"/>
+          
+          <path class="eyelid-blink shiyam-lid-left" d="M 53 58 Q 60 54 66 58 Q 60 62 53 58 Z" fill="#1e293b"/>
+          <path class="eye-happy-slit" d="M 54 62 Q 60 56 66 62" stroke="#020617" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        </g>
+
+        <!-- RIGHT EYE: Almond Shaped Contour -->
+        <g class="eye-right-shiyam">
+          <path class="eye-sclera" d="M 74 58 C 78 54, 84 56, 85 62 C 85 65, 83 67, 79 67 C 75 66, 73 61, 74 58 Z" fill="#0f172a"/>
+          <ellipse class="eye-iris eye-open-state" cx="79" cy="61.5" rx="5.2" ry="5.8" fill="url(#shiyamIrisGrad)"/>
+          <ellipse class="eye-iris-ring eye-open-state" cx="79" cy="61.5" rx="4.2" ry="4.8" stroke="#ca8a04" stroke-width="0.7" fill="none" opacity="0.65"/>
+          <ellipse class="eye-pupil eye-open-state" cx="79" cy="61.5" rx="2.1" ry="5" fill="#020617"/>
+          <path class="eye-gloss-arc eye-open-state" d="M 77 58 C 78 57, 80 57, 81 58" stroke="#ffffff" stroke-width="1" stroke-linecap="round" opacity="0.85"/>
+          <circle class="eye-gloss-dot eye-open-state" cx="77.5" cy="59.5" r="1.3" fill="#ffffff"/>
+          <circle class="eye-gloss-dot-sub eye-open-state" cx="80.5" cy="63.5" r="0.7" fill="#ffffff" opacity="0.9"/>
+          
+          <path class="eyelid-blink shiyam-lid-right" d="M 73 58 Q 79 54 86 58 Q 79 62 73 58 Z" fill="#1e293b"/>
+          <path class="eye-happy-slit" d="M 73 62 Q 79 56 85 62" stroke="#020617" stroke-width="2.5" stroke-linecap="round" fill="none"/>
         </g>
       </g>
 
-      <!-- ==================== SHIYAM (BOY CAT) ==================== -->
-      <g class="cat-char cat-shiyam" transform-origin="58 90">
-        <!-- Natural Multi-Segment Tail -->
-        <g class="cat-tail-rig shiyam-tail-rig">
-          <path class="cat-tail-segment boy-tail-path" d="M 40 98 C 20 100, 8 84, 14 66 C 19 50, 36 54, 44 68 C 50 78, 48 88, 42 98" stroke="#1e293b" stroke-width="8" stroke-linecap="round" fill="none"/>
+      <!-- Feline Nose Leather, Philtrum & Whisker Pads -->
+      <path d="M 68 67 C 67 67, 66 69, 67.5 70.5 C 69 72, 71 72, 72.5 70.5 C 74 69, 73 67, 72 67 Z" fill="#f43f5e"/>
+      <circle cx="68.8" cy="69" r="0.6" fill="#be123c"/>
+      <circle cx="71.2" cy="69" r="0.6" fill="#be123c"/>
+
+      <!-- Mouth & Philtrum -->
+      <path d="M 70 70.5 L 70 72.5 M 66 73 C 68 75.5, 70 74.5, 70 72.5 C 70 74.5, 72 75.5, 74 73" stroke="#0f172a" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+
+      <!-- Pink Grooming/Licking Tongue -->
+      <path class="cat-groom-tongue shiyam-tongue" d="M 70 73 C 71 78, 76 81, 79 77 C 81 74, 76 72, 73 72.5 Z" fill="#fb7185" stroke="#f43f5e" stroke-width="0.8"/>
+
+      <!-- Whisker Vibrissae Dots -->
+      <circle cx="63" cy="71" r="0.6" fill="#64748b"/>
+      <circle cx="61" cy="73" r="0.6" fill="#64748b"/>
+      <circle cx="63.5" cy="74.5" r="0.6" fill="#64748b"/>
+      <circle cx="77" cy="71" r="0.6" fill="#64748b"/>
+      <circle cx="79" cy="73" r="0.6" fill="#64748b"/>
+      <circle cx="76.5" cy="74.5" r="0.6" fill="#64748b"/>
+
+      <!-- Organic Whisker Filaments with Dynamic Micro-Spring -->
+      <g class="whiskers-group shiyam-whiskers">
+        <path class="whisker-strand w-left-1" d="M 61 71 C 48 68, 36 67, 24 68" stroke="#cbd5e1" stroke-width="1" stroke-linecap="round"/>
+        <path class="whisker-strand w-left-2" d="M 60 73 C 47 73, 34 75, 23 78" stroke="#cbd5e1" stroke-width="1" stroke-linecap="round"/>
+        <path class="whisker-strand w-left-3" d="M 62 75 C 50 78, 38 83, 27 88" stroke="#cbd5e1" stroke-width="0.9" stroke-linecap="round"/>
+        <path class="whisker-strand w-right-1" d="M 79 71 C 92 68, 104 67, 116 68" stroke="#cbd5e1" stroke-width="1" stroke-linecap="round"/>
+        <path class="whisker-strand w-right-2" d="M 80 73 C 93 73, 106 75, 117 78" stroke="#cbd5e1" stroke-width="1" stroke-linecap="round"/>
+        <path class="whisker-strand w-right-3" d="M 78 75 C 90 78, 102 83, 113 88" stroke="#cbd5e1" stroke-width="0.9" stroke-linecap="round"/>
+      </g>
+
+      <!-- Royal Collar & Starlight Bell -->
+      <g class="shiyam-collar">
+        <path d="M 58 79 C 64 83, 76 83, 82 79" stroke="#991b1b" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="70" cy="83" r="3.8" fill="url(#goldBellGrad)" stroke="#78350f" stroke-width="0.5"/>
+        <circle cx="70" cy="84" r="0.9" fill="#451a03"/>
+        <line x1="68" y1="83" x2="72" y2="83" stroke="#78350f" stroke-width="0.6"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- =========================================================================
+       2. EN CUTE PAAPA (SILKY SNOW-WHITE ANGORA QUEEN CAT)
+       ========================================================================= -->
+  <g class="cat-individual-wrap cat-paapa-wrap">
+    <!-- Graceful Plumed Silky Tail -->
+    <g class="cat-tail-container paapa-tail-container" transform-origin="142 108">
+      <path class="cat-tail-wave-path paapa-tail-path" d="M 142 108 C 164 112, 178 94, 172 74 C 167 56, 150 60, 142 76 C 136 88, 138 98, 144 108" stroke="url(#paapaBodyGrad)" stroke-width="9.5" stroke-linecap="round" fill="none"/>
+      <path d="M 142 108 C 164 112, 178 94, 172 74" stroke="#fbcfe8" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.6"/>
+    </g>
+
+    <!-- Torso & Pearlescent Soft Body with Breathing -->
+    <g class="cat-body-container paapa-body-container" transform-origin="124 100">
+      <path d="M 146 94 C 150 102, 148 114, 138 116 C 132 116, 128 112, 130 104 C 132 96, 138 92, 146 94 Z" fill="#fae8ed"/>
+      <path d="M 142 96 C 145 76, 134 64, 118 68 C 106 72, 102 88, 104 106 C 106 114, 114 117, 124 116 C 136 115, 141 108, 142 96 Z" fill="url(#paapaBodyGrad)"/>
+      <path d="M 122 75 C 112 78, 106 82, 108 92 C 110 102, 118 108, 126 106 C 131 105, 131 96, 128 88 C 126 81, 126 77, 122 75 Z" fill="url(#paapaBellyGrad)"/>
+
+      <!-- Paws: Delicate Snow Paws with Pink Toe Beans -->
+      <g class="paw-back-right">
+        <ellipse cx="141" cy="115" rx="7" ry="4.5" fill="#ffffff" stroke="#f1f5f9" stroke-width="0.6"/>
+        <path d="M 137 116 C 137 114, 139 113, 141 113 M 141 113 C 143 113, 145 114, 145 116" stroke="#e2e8f0" stroke-width="0.8" fill="none"/>
+      </g>
+      <g class="paw-front-right-paapa">
+        <ellipse cx="126" cy="116" rx="7.5" ry="5" fill="#ffffff" stroke="#f1f5f9" stroke-width="0.6"/>
+        <path d="M 121 117 C 122 114, 125 113, 127 113 M 127 113 C 129 113, 132 114, 133 117" stroke="#e2e8f0" stroke-width="0.8" fill="none"/>
+      </g>
+      <g class="paw-front-left-paapa paapa-touch-paw" transform-origin="112 112">
+        <ellipse cx="112" cy="115" rx="7.5" ry="5" fill="#ffffff" stroke="#f1f5f9" stroke-width="0.6"/>
+        <path d="M 107 116 C 108 113, 111 112, 113 112 M 113 112 C 115 112, 118 113, 119 116" stroke="#e2e8f0" stroke-width="0.8" fill="none"/>
+        <ellipse cx="112" cy="115" rx="3.5" ry="2.2" fill="#fda4af" opacity="0.5"/>
+      </g>
+    </g>
+
+    <!-- Volumetric Head: Queen Paapa with Sakura Blossom -->
+    <g class="cat-head-container paapa-head-container" transform-origin="122 64">
+      <!-- Left Ear (Independent Swivel & Twitch) -->
+      <g class="cat-ear-rig paapa-ear-left" transform-origin="110 38">
+        <path d="M 102 43 C 104 34, 112 22, 118 17 C 124 23, 125 42, 121 50 C 115 49, 108 47, 102 43 Z" fill="url(#paapaHeadGrad)"/>
+        <path d="M 105 42 C 107 34, 113 25, 117 22 C 121 26, 122 38, 119 46 C 114 45, 109 44, 105 42 Z" fill="url(#earInteriorGrad)" opacity="0.7"/>
+        <path d="M 107 44 C 110 39, 114 41, 117 45 M 110 42 C 113 37, 117 39, 118 44" stroke="#ffffff" stroke-width="1.3" stroke-linecap="round"/>
+      </g>
+
+      <!-- Right Ear (Independent Swivel & Twitch) -->
+      <g class="cat-ear-rig paapa-ear-right" transform-origin="138 38">
+        <path d="M 128 50 C 124 42, 125 23, 132 18 C 138 24, 146 36, 148 44 C 142 48, 134 50, 128 50 Z" fill="url(#paapaHeadGrad)"/>
+        <path d="M 130 46 C 128 38, 129 26, 133 23 C 137 28, 143 36, 144 43 C 139 45, 134 46, 130 46 Z" fill="url(#earInteriorGrad)" opacity="0.7"/>
+        <path d="M 131 44 C 134 38, 138 40, 140 45 M 134 42 C 137 37, 141 39, 142 44" stroke="#ffffff" stroke-width="1.3" stroke-linecap="round"/>
+      </g>
+
+      <!-- Cranium & Soft Cheeks Contour -->
+      <path d="M 100 56 C 94 60, 94 70, 100 75 C 105 79, 110 81, 120 81 C 130 81, 135 79, 140 75 C 146 70, 146 60, 140 56 C 135 50, 128 48, 120 48 C 112 48, 105 50, 100 56 Z" fill="url(#paapaHeadGrad)"/>
+
+      <!-- Delicate White Muzzle -->
+      <path d="M 108 66 C 103 68, 102 74, 107 77 C 112 79, 116 77, 120 73 C 124 77, 128 79, 133 77 C 138 74, 137 68, 132 66 C 127 64, 113 64, 108 66 Z" fill="#ffffff"/>
+
+      <!-- Blushing Cheeks -->
+      <ellipse class="cat-blush" cx="104" cy="72" rx="5.2" ry="3.4" fill="#fb7185" opacity="0.78"/>
+      <ellipse class="cat-blush" cx="136" cy="72" rx="5.2" ry="3.4" fill="#fb7185" opacity="0.78"/>
+
+      <!-- ================= HYPER-REALISTIC EYES: PAAPA ================= -->
+      <g class="feline-eyes-group paapa-eyes-group">
+        <!-- LEFT EYE: Aqua Sapphire Gem -->
+        <g class="eye-left-paapa">
+          <path class="eye-sclera" d="M 104 62 C 105 56, 111 54, 115 58 C 116 61, 114 66, 110 67 C 106 67, 104 65, 104 62 Z" fill="#082f49"/>
+          <ellipse class="eye-iris eye-open-state" cx="110" cy="61.5" rx="5.2" ry="5.8" fill="url(#paapaIrisGrad)"/>
+          <ellipse class="eye-iris-ring eye-open-state" cx="110" cy="61.5" rx="4.2" ry="4.8" stroke="#0891b2" stroke-width="0.7" fill="none" opacity="0.65"/>
+          <ellipse class="eye-pupil eye-open-state" cx="110" cy="61.5" rx="2.1" ry="5" fill="#020617"/>
+          <path class="eye-gloss-arc eye-open-state" d="M 108 58 C 109 57, 111 57, 112 58" stroke="#ffffff" stroke-width="1" stroke-linecap="round" opacity="0.85"/>
+          <circle class="eye-gloss-dot eye-open-state" cx="108.5" cy="59.5" r="1.3" fill="#ffffff"/>
+          <circle class="eye-gloss-dot-sub eye-open-state" cx="111.5" cy="63.5" r="0.7" fill="#ffffff" opacity="0.9"/>
+          
+          <path class="eyelid-blink paapa-lid-left" d="M 103 58 Q 110 54 116 58 Q 110 62 103 58 Z" fill="#fdf2f4"/>
+          <path class="eye-happy-slit" d="M 104 62 Q 110 56 116 62" stroke="#475569" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <line class="eye-happy-slit" x1="116" y1="60" x2="119" y2="58" stroke="#475569" stroke-width="1.3" stroke-linecap="round"/>
         </g>
 
-        <!-- Body & Fur Details with realistic breathing expansion -->
-        <g class="cat-body-rig shiyam-body-rig">
-          <!-- Torso -->
-          <ellipse cx="60" cy="88" rx="22" ry="20" fill="#1e293b"/>
-          <!-- Fluffy Chest Fur -->
-          <path d="M 52 75 Q 64 78 70 75 Q 74 86 68 96 Q 58 100 52 94 Z" fill="#f1f5f9"/>
+        <!-- RIGHT EYE: Aqua Sapphire Gem -->
+        <g class="eye-right-paapa">
+          <path class="eye-sclera" d="M 124 58 C 128 54, 134 56, 135 62 C 135 65, 133 67, 129 67 C 125 66, 123 61, 124 58 Z" fill="#082f49"/>
+          <ellipse class="eye-iris eye-open-state" cx="129" cy="61.5" rx="5.2" ry="5.8" fill="url(#paapaIrisGrad)"/>
+          <ellipse class="eye-iris-ring eye-open-state" cx="129" cy="61.5" rx="4.2" ry="4.8" stroke="#0891b2" stroke-width="0.7" fill="none" opacity="0.65"/>
+          <ellipse class="eye-pupil eye-open-state" cx="129" cy="61.5" rx="2.1" ry="5" fill="#020617"/>
+          <path class="eye-gloss-arc eye-open-state" d="M 127 58 C 128 57, 130 57, 131 58" stroke="#ffffff" stroke-width="1" stroke-linecap="round" opacity="0.85"/>
+          <circle class="eye-gloss-dot eye-open-state" cx="127.5" cy="59.5" r="1.3" fill="#ffffff"/>
+          <circle class="eye-gloss-dot-sub eye-open-state" cx="130.5" cy="63.5" r="0.7" fill="#ffffff" opacity="0.9"/>
           
-          <!-- Back Paws -->
-          <ellipse cx="44" cy="104" rx="7" ry="4.5" fill="#1e293b"/>
-          <!-- Front Paws with white socks -->
-          <ellipse cx="58" cy="104" rx="6.5" ry="4.5" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.5"/>
-          <ellipse class="shiyam-reaching-paw" cx="72" cy="103" rx="6.5" ry="4.5" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.5"/>
-        </g>
-
-        <!-- Head Group with Nuzzle, Blink, Ear Twitch -->
-        <g class="cat-head-rig shiyam-head-rig" transform-origin="60 62">
-          <!-- Ears with independent twitches -->
-          <g class="ear-left boy-ear-left" transform-origin="46 38">
-            <polygon points="42,50 44,24 60,40" fill="#1e293b"/>
-            <polygon points="46,47 47,28 58,40" fill="#f472b6" opacity="0.6"/>
-          </g>
-          <g class="ear-right boy-ear-right" transform-origin="72 38">
-            <polygon points="64,38 78,26 80,50" fill="#1e293b"/>
-            <polygon points="67,39 75,30 77,48" fill="#f472b6" opacity="0.6"/>
-          </g>
-
-          <!-- Head Contour & Cheeks -->
-          <circle cx="62" cy="60" r="20" fill="#1e293b"/>
-          <!-- White Muzzle Patch -->
-          <ellipse cx="67" cy="66" rx="11" ry="8" fill="#ffffff"/>
-          
-          <!-- Blushing Pink Cheeks -->
-          <ellipse cx="50" cy="66" rx="4.5" ry="2.8" fill="#fb7185" opacity="0.8"/>
-          <ellipse cx="74" cy="66" rx="4" ry="2.8" fill="#fb7185" opacity="0.8"/>
-
-          <!-- Eyes: Open Eyes + Blinking Eyelids -->
-          <g class="cat-eyes-group boy-eyes">
-            <!-- Open Golden Amber Eyes -->
-            <ellipse class="cat-eye-open" cx="53" cy="58" rx="4.5" ry="5.5" fill="url(#catEyeGold)"/>
-            <ellipse class="cat-eye-open" cx="53" cy="58" rx="2" ry="4.5" fill="#0f172a"/>
-            <circle class="cat-eye-open" cx="52" cy="56" r="1.5" fill="#ffffff"/>
-
-            <ellipse class="cat-eye-open" cx="71" cy="58" rx="4.5" ry="5.5" fill="url(#catEyeGold)"/>
-            <ellipse class="cat-eye-open" cx="71" cy="58" rx="2" ry="4.5" fill="#0f172a"/>
-            <circle class="cat-eye-open" cx="70" cy="56" r="1.5" fill="#ffffff"/>
-
-            <!-- Happy Closed Slits (Active in romance/nuzzle/kiss) -->
-            <path class="cat-eye-happy" d="M 49 59 Q 53 53 58 59" stroke="#0f172a" stroke-width="2.2" stroke-linecap="round" fill="none"/>
-            <path class="cat-eye-happy" d="M 67 59 Q 71 53 76 59" stroke="#0f172a" stroke-width="2.2" stroke-linecap="round" fill="none"/>
-          </g>
-
-          <!-- Nose & Mouth & Little Licking Tongue -->
-          <polygon points="67,64 64.5,67.5 69.5,67.5" fill="#f43f5e"/>
-          <path d="M 64.5 67.5 Q 67 70 69.5 67.5 Q 72 70 74.5 67.5" stroke="#0f172a" stroke-width="1.4" stroke-linecap="round" fill="none"/>
-          <!-- Little Pink Tongue for kissing/licking -->
-          <path class="cat-tongue-lick" d="M 67 69 Q 71 74 74 70" stroke="#f43f5e" stroke-width="3" stroke-linecap="round" fill="none"/>
-
-          <!-- Whiskers with subtle flutter -->
-          <g class="cat-whiskers boy-whiskers">
-            <line x1="46" y1="64" x2="33" y2="61" stroke="#94a3b8" stroke-width="1.1" stroke-linecap="round"/>
-            <line x1="46" y1="67" x2="32" y2="68" stroke="#94a3b8" stroke-width="1.1" stroke-linecap="round"/>
-            <line x1="47" y1="70" x2="34" y2="74" stroke="#94a3b8" stroke-width="1.1" stroke-linecap="round"/>
-          </g>
-
-          <!-- Royal Midnight Blue Collar & Shining Golden Bell -->
-          <path d="M 52 76 Q 62 82 72 76" stroke="#2563eb" stroke-width="3.2" stroke-linecap="round" fill="none"/>
-          <circle cx="62" cy="80" r="3" fill="#facc15" stroke="#ca8a04" stroke-width="0.7"/>
-          <circle cx="62" cy="80" r="1.2" fill="#fffbeb"/>
+          <path class="eyelid-blink paapa-lid-right" d="M 123 58 Q 129 54 136 58 Q 129 62 123 58 Z" fill="#fdf2f4"/>
+          <path class="eye-happy-slit" d="M 123 62 Q 129 56 135 62" stroke="#475569" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <line class="eye-happy-slit" x1="135" y1="60" x2="138" y2="58" stroke="#475569" stroke-width="1.3" stroke-linecap="round"/>
         </g>
       </g>
 
-      <!-- ==================== EN CUTE PAAPA (GIRL CAT) ==================== -->
-      <g class="cat-char cat-paapa" transform-origin="106 90">
-        <!-- Natural Multi-Segment Tail -->
-        <g class="cat-tail-rig paapa-tail-rig">
-          <path class="cat-tail-segment girl-tail-path" d="M 124 98 C 144 100, 156 84, 150 66 C 145 50, 128 54, 120 68 C 114 78, 116 88, 122 98" stroke="#f8fafc" stroke-width="8" stroke-linecap="round" fill="none"/>
-        </g>
+      <!-- Feline Nose & Philtrum -->
+      <path d="M 118 67 C 117 67, 116 69, 117.5 70.5 C 119 72, 121 72, 122.5 70.5 C 124 69, 123 67, 122 67 Z" fill="#f43f5e"/>
+      <circle cx="118.8" cy="69" r="0.6" fill="#be123c"/>
+      <circle cx="121.2" cy="69" r="0.6" fill="#be123c"/>
+      <path d="M 120 70.5 L 120 72.5 M 116 73 C 118 75.5, 120 74.5, 120 72.5 C 120 74.5, 122 75.5, 124 73" stroke="#64748b" stroke-width="1.4" stroke-linecap="round" fill="none"/>
 
-        <!-- Fluffy Snow-White Body with breathing motion -->
-        <g class="cat-body-rig paapa-body-rig">
-          <ellipse cx="104" cy="89" rx="21" ry="19" fill="#ffffff" stroke="#f1f5f9" stroke-width="0.6"/>
-          <!-- Soft Pinkish Warm Belly -->
-          <ellipse cx="99" cy="91" rx="12" ry="13" fill="#fff5f5"/>
-
-          <!-- Paws -->
-          <ellipse class="paapa-touch-paw" cx="92" cy="103" rx="6.5" ry="4.5" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.5"/>
-          <ellipse cx="106" cy="104" rx="6.5" ry="4.5" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.5"/>
-          <ellipse cx="120" cy="104" rx="7" ry="4.5" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.5"/>
-        </g>
-
-        <!-- Head Group with Snuggle, Blinking, Golden Ear Flower -->
-        <g class="cat-head-rig paapa-head-rig" transform-origin="102 62">
-          <!-- Ears with independent twitches -->
-          <g class="ear-left girl-ear-left" transform-origin="92 38">
-            <polygon points="90,50 86,26 100,38" fill="#ffffff" stroke="#f1f5f9" stroke-width="0.5"/>
-            <polygon points="92,48 89,30 98,39" fill="#f472b6" opacity="0.55"/>
-          </g>
-          <g class="ear-right girl-ear-right" transform-origin="118 38">
-            <polygon points="112,38 126,25 128,49" fill="#ffffff" stroke="#f1f5f9" stroke-width="0.5"/>
-            <polygon points="114,39 123,29 125,47" fill="#f472b6" opacity="0.55"/>
-          </g>
-
-          <!-- Head Contour & Cheeks -->
-          <circle cx="102" cy="61" r="19.5" fill="#ffffff" stroke="#f1f5f9" stroke-width="0.6"/>
-          
-          <!-- Blushing Cheeks -->
-          <ellipse cx="90" cy="67" rx="4.5" ry="2.8" fill="#fb7185" opacity="0.88"/>
-          <ellipse cx="114" cy="67" rx="4.5" ry="2.8" fill="#fb7185" opacity="0.88"/>
-
-          <!-- Eyes: Open Aqua Blue Eyes + Happy Blissful Slits -->
-          <g class="cat-eyes-group girl-eyes">
-            <!-- Open Aqua Blue Eyes -->
-            <ellipse class="cat-eye-open" cx="92" cy="59" rx="4.5" ry="5.5" fill="url(#catEyeAqua)"/>
-            <ellipse class="cat-eye-open" cx="92" cy="59" rx="2" ry="4.5" fill="#083344"/>
-            <circle class="cat-eye-open" cx="91" cy="57" r="1.5" fill="#ffffff"/>
-
-            <ellipse class="cat-eye-open" cx="110" cy="59" rx="4.5" ry="5.5" fill="url(#catEyeAqua)"/>
-            <ellipse class="cat-eye-open" cx="110" cy="59" rx="2" ry="4.5" fill="#083344"/>
-            <circle class="cat-eye-open" cx="109" cy="57" r="1.5" fill="#ffffff"/>
-
-            <!-- Happy Curved Eyes with Eyelashes -->
-            <path class="cat-eye-happy" d="M 88 60 Q 92 54 96 60" stroke="#475569" stroke-width="2.2" stroke-linecap="round" fill="none"/>
-            <path class="cat-eye-happy" d="M 106 60 Q 110 54 114 60" stroke="#475569" stroke-width="2.2" stroke-linecap="round" fill="none"/>
-            <line class="cat-eye-happy" x1="96" y1="58" x2="98" y2="56" stroke="#475569" stroke-width="1.3" stroke-linecap="round"/>
-            <line class="cat-eye-happy" x1="114" y1="58" x2="116" y2="56" stroke="#475569" stroke-width="1.3" stroke-linecap="round"/>
-          </g>
-
-          <!-- Nose & Mouth -->
-          <polygon points="102,65 99.5,68.5 104.5,68.5" fill="#f43f5e"/>
-          <path d="M 99.5 68.5 Q 102 71 104.5 68.5 Q 107 71 109.5 68.5" stroke="#475569" stroke-width="1.4" stroke-linecap="round" fill="none"/>
-
-          <!-- Whiskers -->
-          <g class="cat-whiskers girl-whiskers">
-            <line x1="117" y1="65" x2="128" y2="63" stroke="#cbd5e1" stroke-width="1.1" stroke-linecap="round"/>
-            <line x1="117" y1="68" x2="130" y2="69" stroke="#cbd5e1" stroke-width="1.1" stroke-linecap="round"/>
-            <line x1="116" y1="71" x2="127" y2="75" stroke="#cbd5e1" stroke-width="1.1" stroke-linecap="round"/>
-          </g>
-
-          <!-- Cute Golden Flower Hairpin with sparkling ruby center -->
-          <g transform="translate(116, 40)" class="cat-hair-flower">
-            <circle cx="0" cy="0" r="3.5" fill="#facc15" stroke="#ca8a04" stroke-width="0.5"/>
-            <circle cx="-3.5" cy="-2.5" r="2.6" fill="#f43f5e"/>
-            <circle cx="3.5" cy="-2.5" r="2.6" fill="#f43f5e"/>
-            <circle cx="-2" cy="3.5" r="2.6" fill="#f43f5e"/>
-            <circle cx="2" cy="3.5" r="2.6" fill="#f43f5e"/>
-            <circle cx="0" cy="0" r="1.8" fill="#fef08a"/>
-          </g>
-        </g>
+      <!-- Whiskers -->
+      <g class="whiskers-group paapa-whiskers">
+        <path class="whisker-strand w-left-1" d="M 111 71 C 98 68, 86 67, 74 68" stroke="#cbd5e1" stroke-width="1" stroke-linecap="round"/>
+        <path class="whisker-strand w-left-2" d="M 110 73 C 97 73, 84 75, 73 78" stroke="#cbd5e1" stroke-width="1" stroke-linecap="round"/>
+        <path class="whisker-strand w-left-3" d="M 112 75 C 100 78, 88 83, 77 88" stroke="#cbd5e1" stroke-width="0.9" stroke-linecap="round"/>
+        <path class="whisker-strand w-right-1" d="M 129 71 C 142 68, 154 67, 166 68" stroke="#cbd5e1" stroke-width="1" stroke-linecap="round"/>
+        <path class="whisker-strand w-right-2" d="M 130 73 C 143 73, 156 75, 167 78" stroke="#cbd5e1" stroke-width="1" stroke-linecap="round"/>
+        <path class="whisker-strand w-right-3" d="M 128 75 C 140 78, 152 83, 163 88" stroke="#cbd5e1" stroke-width="0.9" stroke-linecap="round"/>
       </g>
 
-      <!-- Romantic Intertwined Tail-Heart with pulsating glow -->
-      <path class="cat-tail-heart-beating" d="M 85 54 C 80 46, 64 46, 64 59 C 64 72, 85 84, 85 84 C 85 84, 106 72, 106 59 C 106 46, 90 46, 85 54 Z" fill="rgba(244,63,94,0.32)" stroke="#f43f5e" stroke-width="1.8" stroke-dasharray="4 3"/>
-    </svg>
+      <!-- Exquisite Sakura Blossom Hairpin with Ruby Gem -->
+      <g class="paapa-sakura-hairpin" transform="translate(136, 42)">
+        <circle cx="0" cy="0" r="4.2" fill="#facc15" stroke="#ca8a04" stroke-width="0.6"/>
+        <circle cx="-4" cy="-3" r="3.2" fill="#f43f5e"/>
+        <circle cx="4" cy="-3" r="3.2" fill="#f43f5e"/>
+        <circle cx="-2.5" cy="4" r="3.2" fill="#f43f5e"/>
+        <circle cx="2.5" cy="4" r="3.2" fill="#f43f5e"/>
+        <circle cx="0" cy="-5" r="3.2" fill="#f43f5e"/>
+        <circle cx="0" cy="0" r="2.2" fill="#fef08a"/>
+        <circle cx="0" cy="0" r="1.1" fill="#be123c"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- Pulsating Intertwined Tail-Heart (Active in Pose 3) -->
+  <path class="cat-tail-heart-beating" d="M 95 60 C 90 51, 72 51, 72 65 C 72 80, 95 93, 95 93 C 95 93, 118 80, 118 65 C 118 51, 100 51, 95 60 Z" fill="rgba(244,63,94,0.36)" stroke="#f43f5e" stroke-width="2.2" stroke-dasharray="5 3.5" filter="url(#catGlowFilter)"/>
+</svg>
 </div>
 
 </body>
